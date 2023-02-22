@@ -1,0 +1,31 @@
+<script setup lang="ts">
+import Icon from "./Icon.vue";
+import NavIcon from "./NavIcon.vue";
+</script>
+
+<template>
+  <ul
+    class="mx-auto max-w-[1576px] rounded-xl flex items-center font-medium lg:gap-12 md:gap-8 gap-4 py-4 md:px-7 sm:px-5 px-3 sm:mt-4 mt-2 bg-white"
+  >
+    <li>
+      <Icon iconName="logo" />
+    </li>
+    <li class="cursor-pointer select-none hidden lg:block">Home</li>
+    <li class="cursor-pointer select-none hidden lg:block">Delivery</li>
+    <li class="cursor-pointer select-none hidden lg:block text-center">
+      About Us
+    </li>
+    <li class="cursor-pointer select-none hidden lg:block">News</li>
+    <li class="hidden gap-2 items-center xl:flex">
+      <Icon iconName="phone" />
+      <h3>+38 097 688 34 38</h3>
+    </li>
+    <ul class="flex gap-3 flex-1 justify-end">
+      <li><NavIcon name="bell" :notifications="3" /></li>
+      <li><NavIcon name="heart" /></li>
+      <li><NavIcon name="human" /></li>
+      <li class="sm:block hidden"><NavIcon name="cart" text="Cart" /></li>
+      <li class="lg:hidden block"><NavIcon name="burgher" /></li>
+    </ul>
+  </ul>
+</template>
