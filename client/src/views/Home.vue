@@ -11,16 +11,24 @@ import Button from "../components/ui/Button.vue";
     <div
       class="md:w-1/2 w-full md:h-full min-h-1/2 h-full flex flex-col justify-center px-10 gap-4 py-2"
     >
-      <h1 class="lg:text-6xl md:text-5xl text-3xl font-bold mt-2">
+      <h1
+        class="lg:text-6xl md:text-5xl text-3xl font-bold mt-2 md:text-left text-center"
+      >
         Ninja Sushi in Kiev! For now just on left shore
       </h1>
       <h4
-        class="sm:whitespace-nowrap whitespace-normal text-[#686870] lg:text-xl md:text-lg text-base"
+        class="sm:whitespace-nowrap whitespace-normal text-[#686870] lg:text-xl md:text-lg text-base md:text-left text-center"
       >
         We deliver between 10:00 and 19:30
       </h4>
-      <Button textColor="white" color="lime" text="Check News" size="lg" />
+      <Button
+        textColor="white"
+        color="lime"
+        text="Check News"
+        size="lg"
+        class="md:mx-0 mx-auto md:w-max w-11/12"
+      />
     </div>
-    <div class="md:w-1/2 w-full md:h-full min-h-1/2 h-full bg-gray-600"></div>
+    <div class="md:w-1/2 w-full md:h-full min-h-1/2 h-full bg-gray-200"></div>
   </div>
 </template>

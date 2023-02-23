@@ -38,7 +38,7 @@ import NavIcon from "./NavIcon.vue";
       class="lg:flex hidden items-center gap-2 cursor-pointer bg-gray-100 hover:bg-gray-200 px-2 py-2 font-bold rounded-md"
     >
       <span class="fi fi-gb rounded-sm"></span>
-      <h4 class="text-xs">ENG</h4>
+      <h4 class="text-xs select-none">ENG</h4>
     </li>
     <ul class="flex gap-3 flex-1 justify-end">
       <li><NavIcon name="bell" :notifications="2" /></li>

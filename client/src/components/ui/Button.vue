@@ -20,7 +20,7 @@ const getSize = computed((): string => {
       returnSize = "padding-inline: 16px;";
       break;
     case "lg":
-      returnSize = "padding-inline: 32px;";
+      returnSize = "padding-inline: 64px;";
       break;
   }
   return returnSize;
