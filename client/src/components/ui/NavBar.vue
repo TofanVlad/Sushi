@@ -5,19 +5,31 @@ import NavIcon from "./NavIcon.vue";
 
 <template>
   <ul
-    class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] rounded-xl flex items-center font-medium lg:gap-8 md:gap-6 gap-4 py-4 md:px-7 sm:px-5 px-3 sm:mt-4 mt-2 bg-white"
+    class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] rounded-xl flex items-center font-medium lg:gap-6 md:gap-4 gap-2 py-4 md:px-7 sm:px-5 px-3 sm:mt-4 mt-2 bg-white"
   >
     <li>
       <Icon iconName="logo" />
     </li>
-    <li class="cursor-pointer select-none hidden lg:block">Home</li>
-    <li class="cursor-pointer select-none hidden lg:block">Delivery</li>
     <li
-      class="cursor-pointer select-none hidden lg:block text-center whitespace-nowrap"
+      class="cursor-pointer select-none hidden lg:block hover:bg-gray-100 px-2 py-1 rounded-md"
+    >
+      Home
+    </li>
+    <li
+      class="cursor-pointer select-none hidden lg:block hover:bg-gray-100 px-2 py-1 rounded-md"
+    >
+      Delivery
+    </li>
+    <li
+      class="cursor-pointer select-none hidden lg:block hover:bg-gray-100 px-2 py-1 rounded-md whitespace-nowrap"
     >
       About Us
     </li>
-    <li class="cursor-pointer select-none hidden lg:block">News</li>
+    <li
+      class="cursor-pointer select-none hidden lg:block hover:bg-gray-100 px-2 py-1 rounded-md"
+    >
+      News
+    </li>
     <li class="hidden gap-2 items-center xl:flex whitespace-nowrap">
       <Icon iconName="phone" />
       <h3>+38 097 688 34 38</h3>
