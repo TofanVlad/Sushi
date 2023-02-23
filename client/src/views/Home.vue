@@ -1,5 +1,7 @@
-<script setup lang="ts"></script>
+<script setup lang="ts">
+import Categories from "../components/Categories.vue";
+</script>
 
 <template>
-  <div></div>
+  <Categories />
 </template>

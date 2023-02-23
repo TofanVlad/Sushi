@@ -4,7 +4,9 @@ specifiers:
   '@types/node': ^18.14.0
   '@vitejs/plugin-vue': ^4.0.0
   autoprefixer: ^10.4.13
+  flag-icons: ^6.6.6
   postcss: ^8.4.21
+  tailwind-scrollbar: ^2.1.0
   tailwindcss: ^3.2.7
   typescript: ^4.9.3
   vite: ^4.1.0
@@ -13,6 +15,7 @@ specifiers:
   vue-tsc: ^1.0.24
 
 dependencies:
+  flag-icons: 6.6.6
   vue: 3.2.47
   vue-router: 4.1.6_vue@3.2.47
 
@@ -21,6 +24,7 @@ devDependencies:
   '@vitejs/plugin-vue': 4.0.0_vite@4.1.4+vue@3.2.47
   autoprefixer: 10.4.13_postcss@8.4.21
   postcss: 8.4.21
+  tailwind-scrollbar: 2.1.0_tailwindcss@3.2.7
   tailwindcss: 3.2.7_postcss@8.4.21
   typescript: 4.9.5
   vite: 4.1.4_@types+node@18.14.0
@@ -610,6 +614,10 @@ packages:
       to-regex-range: 5.0.1
     dev: true
 
+  /flag-icons/6.6.6:
+    resolution: {integrity: sha512-4lHDKxldnQ7q617pf9Dx9nAetT+9zcMpUexbRrc9kjLw9KJgZ83zA5Dky3Vv7ZDzUjAiZ46x/cy5P0HnEnqA2A==}
+    dev: false
+
   /fraction.js/4.2.0:
     resolution: {integrity: sha512-MhLuK+2gUcnZe8ZHlaaINnQLl0xRIGRfcGk2yl8xoQAfHrSsL3rYu6FCmBdkdbhc9EPlwyGHewaRsvwRMJtAlA==}
     dev: true
@@ -895,6 +903,15 @@ packages:
   /supports-preserve-symlinks-flag/1.0.0:
     resolution: {integrity: sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==}
     engines: {node: '>= 0.4'}
+    dev: true
+
+  /tailwind-scrollbar/2.1.0_tailwindcss@3.2.7:
+    resolution: {integrity: sha512-zpvY5mDs0130YzYjZKBiDaw32rygxk5RyJ4KmeHjGnwkvbjm/PszON1m4Bbt2DkMRIXlXsfNevykAESgURN4KA==}
+    engines: {node: '>=12.13.0'}
+    peerDependencies:
+      tailwindcss: 3.x
+    dependencies:
+      tailwindcss: 3.2.7_postcss@8.4.21
     dev: true
 
   /tailwindcss/3.2.7_postcss@8.4.21:
