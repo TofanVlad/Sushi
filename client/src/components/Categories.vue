@@ -1,7 +1,15 @@
 <script setup lang="ts">
 import Icon from "./ui/Icon.vue";
+import { TProps } from "./ui/icons/types";
 
-const categories = ["rolls", "sushi", "sets", "bowls", "drinks", "sauces"];
+const categories: TProps[] = [
+  "rolls",
+  "sushi",
+  "sets",
+  "bowls",
+  "drinks",
+  "sauces",
+];
 </script>
 
 <template>

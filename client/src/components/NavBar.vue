@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import Icon from "./Icon.vue";
-import NavIcon from "./NavIcon.vue";
+import Icon from "./ui/Icon.vue";
+import NavIcon from "./ui/NavIcon.vue";
 </script>
 
 <template>
