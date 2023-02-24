@@ -6,7 +6,7 @@ import Button from "../components/ui/Button.vue";
 <template>
   <Categories />
   <div
-    class="max-w-[1576px] xl:mx-auto sm:mx-4 mx-2 bg-white rounded-2xl h-[500px] sm:mt-12 mt-0 flex md:flex-row flex-col-reverse overflow-hidden"
+    class="max-w-[1576px] xl:mx-auto sm:mx-4 mx-2 bg-white rounded-2xl h-[500px] sm:mt-12 mt-2 flex md:flex-row flex-col-reverse overflow-hidden"
   >
     <div
       class="md:w-1/2 w-full md:h-full min-h-1/2 h-full flex flex-col justify-center px-10 gap-4 py-2"

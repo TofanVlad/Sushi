@@ -5,7 +5,7 @@ import NavIcon from "./NavIcon.vue";
 
 <template>
   <ul
-    class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] rounded-xl flex items-center font-medium lg:gap-6 md:gap-4 gap-2 py-4 md:px-7 sm:px-5 px-3 sm:mt-4 mt-2 bg-white"
+    class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] rounded-xl flex items-center font-medium lg:gap-6 md:gap-4 gap-2 py-4 sm:pl-2 pl-1 md:pr-4 px-3 sm:mt-4 mt-2 bg-white overflow-x-hidden"
   >
     <li>
       <Icon iconName="logo" />
