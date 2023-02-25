@@ -15,6 +15,12 @@ import Human from "./Human.vue";
 import Cart from "./Cart.vue";
 import Burgher from "./Burgher.vue";
 
+import Plus from "./Plus.vue";
+
+import Hot from "./Hot.vue";
+import Plant from "./Plant.vue";
+import Lactose from "./Lactose.vue";
+
 export const icons = {
   logo: Logo,
   rolls: Rolls,
@@ -30,5 +36,9 @@ export const icons = {
   human: Human,
   cart: Cart,
   burgher: Burgher,
+  plus: Plus,
+  hot: Hot,
+  plant: Plant,
+  lactose: Lactose,
 };
 export type TProps = keyof typeof icons;
