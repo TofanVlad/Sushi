@@ -40,12 +40,12 @@ import Specs from "./ui/Specs.vue";
         </h2>
         <div class="flex gap-3 items-end">
           <div
-            class="bg-gray-100 rounded-xl w-[42px] h-[42px] items-center justify-center cursor-pointer sm:flex hidden"
+            class="bg-gray-100 hover:bg-gray-200 rounded-xl w-[42px] h-[42px] items-center justify-center cursor-pointer sm:flex hidden"
           >
             <Icon icon-name="heart" class="fill-orange-500" />
           </div>
           <div
-            class="bg-green-100 sm:w-[62px] sm:h-[42px] h-[32px] w-[52px] flex items-center justify-center rounded-xl cursor-pointer"
+            class="bg-green-100 hover:bg-green-200 sm:w-[62px] sm:h-[42px] h-[32px] w-[52px] flex items-center justify-center rounded-xl cursor-pointer"
           >
             <Icon icon-name="plus" />
           </div>

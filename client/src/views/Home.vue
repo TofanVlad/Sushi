@@ -2,6 +2,8 @@
 import Categories from "../components/Categories.vue";
 import Button from "../components/ui/Button.vue";
 import Product from "../components/Product.vue";
+import Carousel from "../components/Carousel.vue";
+import Map from "../components/Map.vue";
 </script>
 
 <template>
@@ -30,7 +32,7 @@ import Product from "../components/Product.vue";
         class="md:mx-0 mx-auto md:w-max w-11/12"
       />
     </div>
-    <div class="md:w-1/2 w-full md:h-full min-h-1/2 h-full bg-gray-200"></div>
+    <Carousel class="md:w-1/2 w-full md:h-full min-h-1/2 h-full" />
   </div>
 
   <section class="max-w-[1576px] xl:mx-auto sm:mx-4 mx-2 md:mt-24 mt-16">
@@ -107,4 +109,56 @@ import Product from "../components/Product.vue";
       />
     </div>
   </section>
+
+  <section class="max-w-[1576px] xl:mx-auto sm:mx-4 mx-2 md:mt-24 mt-16">
+    <div class="flex md:justify-between justify-center mb-4">
+      <h2 class="font-bold md:text-5xl sm:text-4xl text-3xl">Snacks</h2>
+      <Button
+        color="white"
+        size="lg"
+        textColor="lime"
+        text="Show All"
+        class="md:block hidden"
+      />
+    </div>
+    <div
+      class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full justify-items-center sm:gap-2 gap-4"
+    >
+      <Product v-for="(item, index) in 4" :key="index" />
+      <Button
+        color="white"
+        size="lg"
+        textColor="lime"
+        text="Show All"
+        class="md:hidden block"
+      />
+    </div>
+  </section>
+
+  <section class="max-w-[1576px] xl:mx-auto sm:mx-4 mx-2 md:mt-24 mt-16">
+    <div class="flex md:justify-between justify-center mb-4">
+      <h2 class="font-bold md:text-5xl sm:text-4xl text-3xl">Drinks</h2>
+      <Button
+        color="white"
+        size="lg"
+        textColor="lime"
+        text="Show All"
+        class="md:block hidden"
+      />
+    </div>
+    <div
+      class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full justify-items-center sm:gap-2 gap-4"
+    >
+      <Product v-for="(item, index) in 4" :key="index" />
+      <Button
+        color="white"
+        size="lg"
+        textColor="lime"
+        text="Show All"
+        class="md:hidden block"
+      />
+    </div>
+  </section>
+
+  <Map />
 </template>

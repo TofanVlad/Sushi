@@ -4,7 +4,7 @@ defineProps<{ type: "hit" | "new" }>();
 
 <template>
   <h5
-    class="px-2 py-[2px] rounded-lg opacity-95 capitalize"
+    class="px-2 py-[2px] rounded-lg opacity-95 capitalize select-none"
     :class="
       type === 'hit'
         ? 'bg-red-100 text-orange-500'
