@@ -28,7 +28,9 @@
         — We do not deliver
       </div>
     </div>
-    <div class="sm:h-[450px] h-[350px]">
+    <div
+      class="sm:h-[450px] h-[350px] rounded-2xl sm:rounded-none overflow-hidden"
+    >
       <img
         src="./images/Map.jpg"
         class="w-full h-full object-cover"

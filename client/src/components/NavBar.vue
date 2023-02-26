@@ -8,7 +8,8 @@ import NavIcon from "./ui/NavIcon.vue";
     class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] rounded-xl flex items-center lg:gap-6 md:gap-4 gap-2 py-4 sm:pl-2 pl-1 md:pr-4 px-3 sm:mt-4 mt-2 bg-white overflow-x-hidden"
   >
     <li>
-      <Icon iconName="logo" />
+      <Icon iconName="logo" class="sm:block hidden" />
+      <Icon iconName="logoSmall" class="sm:hidden block" />
     </li>
     <li
       class="cursor-pointer select-none hidden lg:block hover:bg-gray-100 px-2 py-1 rounded-md"
