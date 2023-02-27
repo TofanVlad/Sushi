@@ -30,6 +30,7 @@ import Telegram from "./Telegram.vue";
 import PB from "./PB.vue";
 import Visa from "./Visa.vue";
 import MasterCard from "./MasterCard.vue";
+import Error from "./404.vue";
 
 export const icons = {
   logo: Logo,
@@ -59,5 +60,6 @@ export const icons = {
   pb: PB,
   visa: Visa,
   masterCard: MasterCard,
+  error: Error,
 };
 export type TProps = keyof typeof icons;

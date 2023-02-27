@@ -21,7 +21,7 @@ import Icon from "./ui/Icon.vue";
         <Icon icon-name="googlePlay" />
       </div>
     </div>
-    <div class="xl:w-1/3 w-1/2 relative">
+    <div class="xl:w-1/3 sm:w-1/2 w-2/3 relative">
       <img src="./images/Iphones.png" alt="" class="absolute bottom-0" />
     </div>
   </section>

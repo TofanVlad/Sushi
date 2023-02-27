@@ -3,7 +3,7 @@ import Icon from "./ui/Icon.vue";
 import Button from "./ui/Button.vue";
 </script>
 <template>
-  <section
+  <footer
     class="w-full bg-white 2xl:flex 2xl:gap-0 gap-4 grid lg:grid-cols-3 grid-cols-2 justify-between lg:px-32 md:px-16 px-8 md:py-14 py-8 text-sm lg:rounded-t-none rounded-t-xl"
   >
     <ul
@@ -100,5 +100,5 @@ import Button from "./ui/Button.vue";
         © Ninja Sushi. All right reserved.
       </li>
     </ul>
-  </section>
+  </footer>
 </template>

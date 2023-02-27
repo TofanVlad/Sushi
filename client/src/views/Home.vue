@@ -33,7 +33,7 @@ import Application from "../components/Application.vue";
         class="md:mx-0 mx-auto md:w-max w-11/12"
       />
     </div>
-    <Carousel class="md:w-1/2 w-full md:h-full min-h-1/2 h-full" />
+    <Carousel />
   </div>
 
   <section

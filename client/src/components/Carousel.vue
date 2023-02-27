@@ -1,50 +1,20 @@
 <script setup lang="ts">
-import { ref } from "vue";
-const currentSlider = ref(1);
+// import "vue3-carousel/dist/carousel.css";
+// import { Carousel, Slide } from "vue3-carousel";
+const images = ["Car_1.jpg", "Car_2.jpg", "Car_3.jpg", "Car_4.jpg"];
 </script>
 <template>
-  <section class="w-full h-full relative bg-gray-200 transitions">
-    <img
-      src="./images/Car_1.jpg"
-      alt=""
-      class="w-full h-full object-cover transitions"
-      v-show="currentSlider == 1"
-    />
-    <img
-      src="./images/Car_2.jpg"
-      alt=""
-      class="w-full h-full object-cover transitions"
-      v-show="currentSlider == 2"
-    />
-    <img
-      src="./images/Car_3.jpg"
-      alt=""
-      class="w-full h-full object-cover transitions"
-      v-show="currentSlider == 3"
-    />
-    <img
-      src="./images/Car_4.jpg"
-      alt=""
-      class="w-full h-full object-cover transitions"
-      v-show="currentSlider == 4"
-    />
-    <div class="absolute bottom-4 left-4 flex gap-2">
-      <div
-        class="bg-gray-300 rounded-full w-3 h-3 cursor-pointer opacity-70"
-        :class="item == currentSlider && 'bg-orange-500'"
-        @click="currentSlider = item"
-        v-for="item in 4"
-        :key="item"
-      ></div>
-    </div>
-  </section>
+  <!-- <Carousel
+    :items-to-show="1"
+    :wrap-around="true"
+    :autoplay="5000"
+    class="md:w-1/2 w-full md:h-full min-h-1/2 h-full"
+  >
+    <Slide v-for="slide in images" :key="slide" class="h-full">
+      <img :src="`/${slide}`" alt="" class="w-full h-full object-cover" />
+    </Slide>
+  </Carousel> -->
+  <div class="md:w-1/2 w-full md:h-full min-h-1/2 h-full">
+    <img src="/Car_1.jpg" alt="" class="w-full h-full object-cover" />
+  </div>
 </template>
-
-<style scoped>
-.transitions {
-  -webkit-transition: opacity 1s ease-in-out;
-  -moz-transition: opacity 1s ease-in-out;
-  -o-transition: opacity 1s ease-in-out;
-  transition: opacity 1s ease-in-out;
-}
-</style>

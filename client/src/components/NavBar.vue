@@ -4,8 +4,8 @@ import NavIcon from "./ui/NavIcon.vue";
 </script>
 
 <template>
-  <ul
-    class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] rounded-xl flex items-center lg:gap-6 md:gap-4 gap-2 py-4 sm:pl-2 pl-1 md:pr-4 px-3 sm:mt-4 mt-2 bg-white overflow-x-hidden"
+  <nav
+    class="xl:mx-auto sm:mx-4 list-none mx-2 max-w-[1576px] rounded-xl flex items-center lg:gap-6 md:gap-4 gap-2 py-4 sm:pl-2 pl-1 md:pr-4 px-3 sm:mt-4 mt-2 bg-white overflow-x-hidden"
   >
     <li>
       <Icon iconName="logo" class="sm:block hidden" />
@@ -48,5 +48,5 @@ import NavIcon from "./ui/NavIcon.vue";
       <li class="sm:block hidden"><NavIcon name="cart" text="Cart" /></li>
       <li class="lg:hidden block"><NavIcon name="burgher" /></li>
     </ul>
-  </ul>
+  </nav>
 </template>
