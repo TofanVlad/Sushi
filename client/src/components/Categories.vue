@@ -35,7 +35,7 @@ const getIconName = computed(() => {
         class="flex flex-col sm:gap-2 gap-0 items-center justify-center cursor-pointer sm:shadow-none shadow-md sm:hover:bg-gray-100 sm:bg-transparent bg-white sm:w-20 w-16 sm:h-20 h-16 py-[2px] rounded-lg select-none"
         v-for="(item, index) in categories"
         :key="index"
-        :to="`/Product/${item}`"
+        :to="`/Products/${item}`"
       >
         <Icon :icon-name="getIconName(item)" />
         <h3 class="capitalize sm:block hidden">{{ item }}</h3>

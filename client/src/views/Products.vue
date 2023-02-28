@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { ref, reactive, computed } from "vue";
 
 import Product from "../components/Product.vue";
 import Button from "../components/ui/Button.vue";
@@ -8,12 +8,42 @@ import CategoryButton from "../components/ui/CategoryButton.vue";
 import Categories from "../components/Categories.vue";
 import Icon from "../components/ui/Icon.vue";
 
-import { TCategories } from "../components/ui/icons/types";
+import { TCategories, TProps } from "../components/ui/icons/types";
 
 const categories = ref(["All", "Classic", "Maki", "Baked", "Sweet"]);
 
 const activeChip = ref(0);
 const activeChipValue = ref(categories.value[0]);
+
+interface TProductType {
+  active: boolean;
+  iconName: TProps;
+  text: string;
+}
+
+const productType: TProductType[] = reactive([
+  { active: false, iconName: "hot", text: "Spicy" },
+  { active: false, iconName: "plant", text: "Vegetarian" },
+  { active: false, iconName: "lactose", text: "Lactose-free" },
+]);
+
+const Ingredients = reactive([
+  { name: "Salmon", active: false },
+  { name: "Eel", active: false },
+  { name: "Tuna", active: false },
+  { name: "Chicken Breast", active: false },
+  { name: "Tofu", active: false },
+  { name: "Cream Cheese", active: false },
+  { name: "Avocado", active: false },
+  { name: "Tomato", active: false },
+  { name: "Mushroom", active: false },
+]);
+
+const selectedIngredients = computed(() => {
+  let selected = 0;
+  Ingredients.map((item) => item.active && selected++);
+  return selected;
+});
 
 const selectChip = (index: number) => {
   activeChip.value = index;
@@ -45,7 +75,9 @@ defineProps<{ name: TCategories }>();
       </div>
     </div>
 
-    <h1 class="font-bold text-5xl capitalize mt-20">{{ name }}</h1>
+    <h1 class="font-bold text-5xl capitalize mt-20">
+      {{ name }}
+    </h1>
 
     <div class="justify-between items-center sm:flex hidden mt-8">
       <div class="md:gap-4 gap-2 sm:flex hidden">
@@ -66,29 +98,46 @@ defineProps<{ name: TCategories }>();
 
     <div class="flex justify-between my-8">
       <div class="md:flex hidden gap-4">
-        <CategoryButton :active="true" iconName="hot" text="Spicy" />
-        <CategoryButton :active="false" iconName="plant" text="Vegetarian" />
-        <CategoryButton :active="true" iconName="lactose" text="Lactose-free" />
+        <CategoryButton
+          :active="item.active"
+          :iconName="item.iconName"
+          :text="item.text"
+          @click="item.active = !item.active"
+          v-for="(item, index) in productType"
+          :key="index"
+        />
       </div>
       <div class="xl:flex hidden gap-4">
-        <CategoryButton :active="true" image="Salmon" text="Salmon" />
-        <CategoryButton :active="false" image="Eel" text="Eel" />
-        <CategoryButton :active="false" image="Tuna" text="Tuna" />
         <CategoryButton
-          :active="false"
-          image="ChickenBreast"
-          text="Chicken Breast"
+          :active="item.active"
+          @click="item.active = !item.active"
+          :image="item.name"
+          :text="item.name"
+          v-for="(item, index) in Ingredients.slice(0, 4)"
+          :key="index"
         />
         <div
-          class="flex items-center justify-center bg-white hover:bg-gray-200 p-4 rounded-lg cursor-pointer"
+          class="flex items-center justify-center relative bg-white hover:bg-gray-200 p-4 rounded-lg cursor-pointer"
         >
+          <div
+            class="absolute rounded-full bg-[#FF6633] sm:w-7 w-5 sm:h-7 h-5 sm:text-base text-sm text-white -top-2 -right-2 flex items-center justify-center"
+            v-if="selectedIngredients > 0"
+          >
+            {{ selectedIngredients }}
+          </div>
           <Icon icon-name="categoryMenu" />
         </div>
       </div>
       <div class="xl:hidden flex gap-4">
         <div
-          class="flex gap-2 items-center justify-center bg-white hover:bg-gray-200 p-4 text-gray-500 rounded-lg cursor-pointer"
+          class="flex gap-2 items-center relative justify-center bg-white hover:bg-gray-200 p-4 text-gray-500 rounded-lg cursor-pointer"
         >
+          <div
+            class="absolute rounded-full bg-[#FF6633] sm:w-7 w-5 sm:h-7 h-5 sm:text-base text-sm text-white -top-2 -right-2 flex items-center justify-center"
+            v-if="selectedIngredients > 0"
+          >
+            {{ selectedIngredients }}
+          </div>
           <h4>Filters</h4>
           <Icon icon-name="categoryMenu" />
         </div>
