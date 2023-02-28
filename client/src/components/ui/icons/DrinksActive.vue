@@ -13,7 +13,7 @@
       clip-rule="evenodd"
     />
     <path
-      fill="#9E9E9E"
+      fill="#F63"
       d="M30.8 26.1a8.3 8.3 0 1 1-16.6 0 8.3 8.3 0 0 1 16.6 0Z"
     />
     <path

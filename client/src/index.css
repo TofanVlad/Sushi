@@ -10,3 +10,9 @@ body{
     color: #1D1D1F;
     font-weight: 500;
 }
+/* #app{
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+} */

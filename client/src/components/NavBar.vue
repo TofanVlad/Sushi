@@ -11,16 +11,16 @@ import NavIcon from "./ui/NavIcon.vue";
       <Icon iconName="logo" class="sm:block hidden" />
       <Icon iconName="logoSmall" class="sm:hidden block" />
     </li>
-    <li
+    <router-link
+      to="/"
       class="cursor-pointer select-none hidden lg:block hover:bg-gray-100 px-2 py-1 rounded-md"
+      >Home</router-link
     >
-      Home
-    </li>
-    <li
+    <router-link
+      to="/Product"
       class="cursor-pointer select-none hidden lg:block hover:bg-gray-100 px-2 py-1 rounded-md"
+      >Delivery</router-link
     >
-      Delivery
-    </li>
     <li
       class="cursor-pointer select-none hidden lg:block hover:bg-gray-100 px-2 py-1 rounded-md whitespace-nowrap"
     >

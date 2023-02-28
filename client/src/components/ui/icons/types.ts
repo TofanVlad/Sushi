@@ -1,11 +1,24 @@
 import Logo from "./Logo.vue";
 import LogoSmall from "./LogoSmall.vue";
+
 import Rolls from "./Rolls.vue";
+import RollsActive from "./RollsActive.vue";
+
 import Sushi from "./Sushi.vue";
+import SushiActive from "./SushiActive.vue";
+
 import Sets from "./Sets.vue";
+import SetsActive from "./SetsActive.vue";
+
 import Bowls from "./Bowls.vue";
+import BowlsActive from "./BowlsActive.vue";
+
 import Drinks from "./Drinks.vue";
+import DrinksActive from "./DrinksActive.vue";
+
 import Sauces from "./Sauces.vue";
+import SaucesActive from "./SaucesActive.vue";
+
 import Unknown from "./Unknown.vue";
 
 import Phone from "./Phone.vue";
@@ -31,16 +44,29 @@ import PB from "./PB.vue";
 import Visa from "./Visa.vue";
 import MasterCard from "./MasterCard.vue";
 import Error from "./404.vue";
+import House from "./House.vue";
+
+import DropDown from "./DropDown.vue";
+import LeftArrow from "./LeftArrow.vue";
+import RightArrow from "./RightArrow.vue";
+
+import CategoryMenu from "./CategoryMenu.vue";
 
 export const icons = {
   logo: Logo,
   logoSmall: LogoSmall,
   rolls: Rolls,
+  rollsActive: RollsActive,
   sushi: Sushi,
+  sushiActive: SushiActive,
   sets: Sets,
+  setsActive: SetsActive,
   bowls: Bowls,
+  bowlsActive: BowlsActive,
   drinks: Drinks,
+  drinksActive: DrinksActive,
   sauces: Sauces,
+  saucesActive: SaucesActive,
   unknown: Unknown,
   phone: Phone,
   bell: Bell,
@@ -61,5 +87,24 @@ export const icons = {
   visa: Visa,
   masterCard: MasterCard,
   error: Error,
+  house: House,
+  dropDown: DropDown,
+  leftArrow: LeftArrow,
+  rightArrow: RightArrow,
+  categoryMenu: CategoryMenu,
 };
 export type TProps = keyof typeof icons;
+
+export type TCategories =
+  | "rolls"
+  | "rollsActive"
+  | "sushi"
+  | "sushiActive"
+  | "sets"
+  | "setsActive"
+  | "bowls"
+  | "bowlsActive"
+  | "drinks"
+  | "drinksActive"
+  | "sauces"
+  | "saucesActive";

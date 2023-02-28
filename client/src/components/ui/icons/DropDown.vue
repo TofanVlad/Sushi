@@ -1,0 +1,10 @@
+<template>
+  <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" fill="none">
+    <path
+      fill="#1D1D1F"
+      fill-rule="evenodd"
+      d="M6.4 9c.3-.4.9-.4 1.2 0l4.4 4.3L16.4 9a.8.8 0 1 1 1.2 1.2l-5 5c-.3.3-.9.3-1.2 0l-5-5a.8.8 0 0 1 0-1.2Z"
+      clip-rule="evenodd"
+    />
+  </svg>
+</template>

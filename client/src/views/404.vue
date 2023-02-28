@@ -5,9 +5,9 @@ import Button from "../components/ui/Button.vue";
 
 <template>
   <section
-    class="flex h-full my-auto flex-col items-center justify-center gap-4 py-8 px-4"
+    class="flex h-full my-auto min-h-[600px] flex-col items-center justify-center gap-4 py-8 px-4"
   >
-    <Icon icon-name="error" class="flex-1" />
+    <Icon icon-name="error" />
     <h4 class="font-bold text-3xl max-w-[400px] text-center">
       Error 404. <br />
       Something went wrong

@@ -13,9 +13,9 @@ import Button from "./ui/Button.vue";
         <Icon icon-name="logo" />
       </li>
       <li
-        class="lg:flex hidden flex-col gap-2 justify-between items-center lg:max-w-[270px] max-w-max"
+        class="lg:flex hidden flex-col gap-2 justify-between items-start lg:max-w-[270px] max-w-max"
       >
-        <Icon icon-name="appStore" class="cursor-pointer" />
+        <Icon icon-name="appStore" class="cursor-pointer ml-2" />
         <Icon icon-name="googlePlay" />
       </li>
       <li class="text-gray-400 lg:block hidden">

@@ -9,7 +9,8 @@ import Application from "../components/Application.vue";
 
 <template>
   <Categories />
-  <div
+
+  <section
     class="max-w-[1576px] xl:mx-auto sm:mx-4 mx-2 bg-white rounded-2xl h-[500px] sm:mt-12 mt-2 flex md:flex-row flex-col-reverse overflow-hidden"
   >
     <div
@@ -18,7 +19,7 @@ import Application from "../components/Application.vue";
       <h1
         class="lg:text-6xl md:text-5xl text-3xl font-bold mt-2 md:text-left text-center"
       >
-        Ninja Sushi in Kiev! For now just on left shore
+        Ninja Sushi in London! For now just on left shore
       </h1>
       <h4
         class="sm:whitespace-nowrap whitespace-normal text-[#686870] lg:text-xl md:text-lg text-base md:text-left text-center"
@@ -34,7 +35,7 @@ import Application from "../components/Application.vue";
       />
     </div>
     <Carousel />
-  </div>
+  </section>
 
   <section
     class="max-w-[1576px] xl:mx-auto sm:mx-4 mx-2 md:mt-24 mt-16"
