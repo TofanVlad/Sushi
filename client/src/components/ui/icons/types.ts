@@ -30,6 +30,7 @@ import Cart from "./Cart.vue";
 import Burgher from "./Burgher.vue";
 
 import Plus from "./Plus.vue";
+import Minus from "./Minus.vue";
 
 import Hot from "./Hot.vue";
 import Plant from "./Plant.vue";
@@ -51,6 +52,7 @@ import LeftArrow from "./LeftArrow.vue";
 import RightArrow from "./RightArrow.vue";
 
 import CategoryMenu from "./CategoryMenu.vue";
+import Cross from "./Cross.vue";
 
 export const icons = {
   logo: Logo,
@@ -75,6 +77,7 @@ export const icons = {
   cart: Cart,
   burgher: Burgher,
   plus: Plus,
+  minus: Minus,
   hot: Hot,
   plant: Plant,
   lactose: Lactose,
@@ -92,6 +95,7 @@ export const icons = {
   leftArrow: LeftArrow,
   rightArrow: RightArrow,
   categoryMenu: CategoryMenu,
+  cross: Cross,
 };
 export type TProps = keyof typeof icons;
 

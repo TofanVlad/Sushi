@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, reactive, computed } from "vue";
 
+import Modal from "../components/ui/Modal.vue";
 import Product from "../components/Product.vue";
 import Button from "../components/ui/Button.vue";
 import CategoryChips from "../components/ui/CategoryChips.vue";
@@ -14,6 +15,8 @@ const categories = ref(["All", "Classic", "Maki", "Baked", "Sweet"]);
 
 const activeChip = ref(0);
 const activeChipValue = ref(categories.value[0]);
+const ingredientsModal = ref(false);
+const ingredientsMore = ref(false);
 
 interface TProductType {
   active: boolean;
@@ -39,9 +42,19 @@ const Ingredients = reactive([
   { name: "Mushroom", active: false },
 ]);
 
+const clearIngredients = () => {
+  Ingredients.forEach((element) => {
+    element.active = false;
+  });
+  productType.forEach((element) => {
+    element.active = false;
+  });
+};
+
 const selectedIngredients = computed(() => {
   let selected = 0;
   Ingredients.map((item) => item.active && selected++);
+  productType.map((item) => item.active && selected++);
   return selected;
 });
 
@@ -54,9 +67,7 @@ defineProps<{ name: TCategories }>();
 </script>
 
 <template>
-  <section
-    class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] sm:pl-2 pl-1 md:pr-4 px-3"
-  >
+  <section class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] sm:px-2 px-1">
     <div class="relative">
       <Categories :name="name" />
       <div class="absolute lg:top-1/4 top-[110%] flex items-center gap-4">
@@ -79,24 +90,32 @@ defineProps<{ name: TCategories }>();
       {{ name }}
     </h1>
 
-    <div class="justify-between items-center sm:flex hidden mt-8">
-      <div class="md:gap-4 gap-2 sm:flex hidden">
-        <CategoryChips
-          v-for="(item, index) in categories"
-          :key="index"
-          :text="item"
-          :active="index == activeChip"
-          @click="selectChip(index)"
-        />
+    <div
+      class="sm:grid sm:grid-cols-[1fr_fit-content(100%)] flex justify-between mt-8 gap-y-8"
+    >
+      <div class="justify-between items-center sm:flex hidden">
+        <div class="md:gap-4 gap-2 sm:flex hidden">
+          <CategoryChips
+            v-for="(item, index) in categories"
+            :key="index"
+            :text="item"
+            :active="index == activeChip"
+            @click="selectChip(index)"
+          />
+        </div>
       </div>
       <h4
-        class="sm:flex md:text-base text-xs hidden md:gap-2 gap-0 items-center cursor-pointer"
+        class="md:flex md:text-base sm:text-xs text-sm sm:text-black text-gray-500 sm:hidden flex sm:bg-transparent bg-white w-max md:p-0 p-4 rounded-xl md:gap-2 gap-0 items-center cursor-pointer lg:place-self-end min-w-[130px]"
       >
-        From expensive to cheap <Icon icon-name="dropDown" />
+        <h4 class="whitespace-nowrap text-ellipsis overflow-hidden">
+          From expensive to cheap
+        </h4>
+        <Icon
+          icon-name="dropDown"
+          class="sm:fill-black fill-gray-400 min-w-[24px]"
+        />
       </h4>
-    </div>
 
-    <div class="flex justify-between my-8">
       <div class="md:flex hidden gap-4">
         <CategoryButton
           :active="item.active"
@@ -107,39 +126,94 @@ defineProps<{ name: TCategories }>();
           :key="index"
         />
       </div>
-      <div class="xl:flex hidden gap-4">
+      <div class="xl:flex hidden gap-4 w-fit flex-wrap justify-end">
         <CategoryButton
+          v-for="(item, index) in !ingredientsMore
+            ? Ingredients.slice(0, 4)
+            : Ingredients"
+          :key="index"
           :active="item.active"
           @click="item.active = !item.active"
           :image="item.name"
           :text="item.name"
-          v-for="(item, index) in Ingredients.slice(0, 4)"
-          :key="index"
         />
         <div
-          class="flex items-center justify-center relative bg-white hover:bg-gray-200 p-4 rounded-lg cursor-pointer"
+          class="bg-white hover:bg-gray-200 rounded-lg flex items-center justify-center outline outline-1 cursor-pointer max-w-[56px] max-h-[56px]"
+          :class="
+            ingredientsMore ? 'outline-orange-500 p-4' : 'outline-gray-500 p-3'
+          "
+          @click="ingredientsMore = !ingredientsMore"
         >
-          <div
-            class="absolute rounded-full bg-[#FF6633] sm:w-7 w-5 sm:h-7 h-5 sm:text-base text-sm text-white -top-2 -right-2 flex items-center justify-center"
-            v-if="selectedIngredients > 0"
-          >
-            {{ selectedIngredients }}
-          </div>
-          <Icon icon-name="categoryMenu" />
+          <Icon
+            icon-name="minus"
+            class="fill-gray-600"
+            v-if="ingredientsMore"
+          />
+          <Icon icon-name="plus" class="fill-gray-600" v-else />
         </div>
       </div>
-      <div class="xl:hidden flex gap-4">
-        <div
-          class="flex gap-2 items-center relative justify-center bg-white hover:bg-gray-200 p-4 text-gray-500 rounded-lg cursor-pointer"
-        >
+      <div class="xl:hidden flex place-self-end w-max">
+        <div class="relative text-gray-500 select-none">
           <div
             class="absolute rounded-full bg-[#FF6633] sm:w-7 w-5 sm:h-7 h-5 sm:text-base text-sm text-white -top-2 -right-2 flex items-center justify-center"
             v-if="selectedIngredients > 0"
           >
             {{ selectedIngredients }}
           </div>
-          <h4>Filters</h4>
-          <Icon icon-name="categoryMenu" />
+          <div
+            class="cursor-pointer flex gap-2 items-center justify-center bg-white hover:bg-gray-200 p-4 rounded-lg"
+            @click="ingredientsModal = !ingredientsModal"
+          >
+            <h4>Filters</h4>
+            <Icon icon-name="categoryMenu" />
+          </div>
+          <Modal v-if="ingredientsModal">
+            <div
+              class="flex justify-between items-center lg:w-[650px] md:w-[550px] sm:w-[450px] w-[calc(100vw-64px)]"
+            >
+              <h2 class="font-bold text-2xl text-gray-900">Filters</h2>
+              <div class="flex gap-4">
+                <h4
+                  class="text-orange-400 cursor-pointer whitespace-nowrap h-max"
+                  @click="clearIngredients"
+                >
+                  Reset all
+                </h4>
+                <div
+                  class="p-1 bg-gray-100 cursor-pointer rounded-md h-max"
+                  @click="ingredientsModal = !ingredientsModal"
+                >
+                  <Icon icon-name="cross" />
+                </div>
+              </div>
+            </div>
+            <h4 class="w-full text-lg text-gray-500 py-2">Category</h4>
+            <CategoryChips
+              v-for="(item, index) in categories"
+              :key="index"
+              :text="item"
+              :active="index == activeChip"
+              @click="selectChip(index)"
+            />
+            <h4 class="w-full text-lg text-gray-500 py-2">Type</h4>
+            <CategoryButton
+              v-for="(item, index) in productType"
+              :key="index"
+              :active="item.active"
+              @click="item.active = !item.active"
+              :iconName="item.iconName"
+              :text="item.text"
+            />
+            <h4 class="w-full text-lg text-gray-500 py-2">Ingredients</h4>
+            <CategoryButton
+              v-for="(item, index) in Ingredients"
+              :key="index"
+              :active="item.active"
+              @click="item.active = !item.active"
+              :image="item.name"
+              :text="item.name"
+            />
+          </Modal>
         </div>
       </div>
     </div>

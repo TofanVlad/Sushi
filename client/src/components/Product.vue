@@ -47,7 +47,7 @@ import Specs from "./ui/Specs.vue";
           <div
             class="bg-green-100 hover:bg-green-200 sm:w-[62px] sm:h-[42px] h-[32px] w-[52px] flex items-center justify-center rounded-xl cursor-pointer"
           >
-            <Icon icon-name="plus" />
+            <Icon icon-name="plus" class="fill-green-400" />
           </div>
         </div>
       </div>
