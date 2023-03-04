@@ -2,41 +2,66 @@
 import Icon from "./ui/Icon.vue";
 import Type from "./ui/Type.vue";
 import Specs from "./ui/Specs.vue";
+
+import { computed } from "vue";
+
+interface IProps {
+  href: string;
+  title: string;
+  weight: number;
+  image: string;
+  type?: ("hit" | "new")[];
+  specs?: ("hot" | "plant" | "lactose")[];
+  description: string;
+  price: number;
+  currency: string;
+}
+const props = defineProps<IProps>();
+
+const imgURL = computed(() => {
+  return new URL(`../assets/images/${props.image}.png`, import.meta.url).href;
+});
 </script>
 
 <template>
-  <div
-    class="sm:p-4 px-2 py-4 flex md:flex-col justify-between w-max bg-white rounded-md overflow-hidden md:max-w-[300px] max-w-full md:h-max h-[220px] sm:gap-3 gap-2 relative"
+  <router-link
+    :to="href"
+    class="sm:p-4 px-2 py-4 flex md:flex-col justify-between w-max bg-white cursor-pointer outline outline-2 outline-none hover:outline-orange-500 transition-all rounded-md overflow-hidden md:max-w-[300px] max-w-full md:h-max h-[220px] sm:gap-3 gap-2 relative shadow-sm"
   >
-    <Specs :types="['hot', 'plant', 'lactose']" classes="outside" />
+    <Specs :types="specs" classes="outside" v-if="specs" />
 
     <div
       class="md:max-w-[290px] md:max-h-[270px] h-max md:w-full min-w-[96px] w-3/4 relative"
     >
-      <img src="./images/prod.jpg" class="w-full h-full object-cover" alt="" />
+      <img :src="imgURL" class="w-full h-full object-cover" alt="" />
       <div class="absolute top-0 left-0 flex gap-2">
-        <Type type="hit" />
-        <Type type="new" />
+        <Type
+          :type="item"
+          v-for="(item, index) in type"
+          :key="index"
+          v-if="type"
+        />
       </div>
-      <Specs :types="['hot', 'plant', 'lactose']" classes="inside" />
+      <Specs :types="specs" classes="inside" v-if="specs" />
     </div>
-    <div class="flex flex-col md:w-full max-w-3/4 gap-1">
+    <div class="flex flex-col w-full max-w-3/4 gap-1">
       <h2 class="font-bold sm:text-2xl text-xl whitespace-nowrap">
-        Gunkan Salmon
+        {{ title }}
       </h2>
-      <h4 class="text-orange-500 sm:text-lg text-base">Weight: 40g</h4>
+      <h4 class="text-orange-500 sm:text-lg text-base">
+        Weight: {{ weight }}g
+      </h4>
       <h4
         class="text-[#686870] md:max-h-[86px] sm:text-base text-sm clamp mb-auto"
       >
-        Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius nihil vero
-        facere assumenda aliquid. Quos porro non totam labore necessitatibus.
+        {{ description }}
       </h4>
       <div class="flex justify-between items-end">
         <h2 class="font-bold xl:text-4xl sm:text-3xl text-xl whitespace-nowrap">
-          190
-          <span class="text-[#686870] xl:text-lg sm:text-base text-sm"
-            >MDL</span
-          >
+          {{ price }}
+          <span class="text-[#686870] xl:text-lg sm:text-base text-sm">{{
+            currency
+          }}</span>
         </h2>
         <div class="flex gap-3 items-end">
           <div
@@ -52,7 +77,7 @@ import Specs from "./ui/Specs.vue";
         </div>
       </div>
     </div>
-  </div>
+  </router-link>
 </template>
 
 <style scoped>

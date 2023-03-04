@@ -2,13 +2,38 @@
 import Icon from "./Icon.vue";
 interface IProps {
   types: Array<"hot" | "plant" | "lactose">;
-  classes: "inside" | "outside";
+  classes: "inside" | "outside" | "prod";
 }
 defineProps<IProps>();
 </script>
 
 <template>
   <div
+    class="md:px-2 px-1 py-1 rounded-md flex items-center sm:gap-2 gap-0 w-max select-none"
+    :class="
+      item == 'hot'
+        ? 'sm:bg-red-100 text-red-500'
+        : item == 'plant'
+        ? 'sm:bg-lime-100 text-lime-500'
+        : 'sm:bg-amber-100 text-amber-500'
+    "
+    v-if="classes == 'prod'"
+    v-for="(item, index) in types"
+    :key="index"
+  >
+    <Icon :icon-name="item"></Icon>
+    <h4 class="xl:text-base text-sm sm:block hidden">
+      {{
+        item == "hot"
+          ? "Spicy"
+          : item == "plant"
+          ? "Vegetarian"
+          : "Lactose-free"
+      }}
+    </h4>
+  </div>
+  <div
+    v-else
     class="absolute gap-2"
     :class="
       classes === 'inside'

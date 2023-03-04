@@ -32,7 +32,7 @@
       class="sm:h-[450px] h-[350px] rounded-2xl sm:rounded-none overflow-hidden"
     >
       <img
-        src="./images/Map.jpg"
+        src="../assets/images/Map.jpg"
         class="w-full h-full object-cover"
         alt="Map_Image"
       />

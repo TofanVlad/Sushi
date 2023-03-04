@@ -26,13 +26,13 @@ const getIconName = computed(() => {
 
 <template>
   <nav
-    class="sm:overflow-hidden scrollbar-thin sm:pb-0 pb-1 scrollbar-thumb-gray-200 scrollbar-thumb-rounded-lg"
+    class="sm:overflow-hidden scrollbar-thin sm:pb-0 pb-1 scrollbar-thumb-gray-300 scrollbar-track-gray-200 scrollbar-thumb-rounded-lg"
   >
     <div
       class="sm:bg-white bg-transparent mx-auto sm:mt-4 mt-0 rounded-md flex md:gap-8 sm:gap-4 gap-2 w-max sm:px-4 px-2 py-2"
     >
       <router-link
-        class="flex flex-col sm:gap-2 gap-0 items-center justify-center cursor-pointer sm:shadow-none shadow-md sm:hover:bg-gray-100 sm:bg-transparent bg-white sm:w-20 w-16 sm:h-20 h-16 py-[2px] rounded-lg select-none"
+        class="flex flex-col sm:gap-2 gap-0 items-center justify-center cursor-pointer sm:shadow-none shadow-md sm:hover:bg-gray-100 transition-all sm:bg-transparent bg-white sm:w-20 w-16 sm:h-20 h-16 py-[2px] rounded-lg select-none"
         v-for="(item, index) in categories"
         :key="index"
         :to="`/Products/${item}`"

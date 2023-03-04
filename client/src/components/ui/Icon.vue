@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import { TProps, icons } from "./icons/types";
+import { TIcons, icons } from "./icons/types";
 
 interface IProps {
-  iconName: TProps;
+  iconName: TIcons;
 }
 
 const props = defineProps<IProps>();

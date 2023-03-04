@@ -66,7 +66,7 @@ const getBtnStyles = computed((): string => {
 <template>
   <button
     :style="getBtnStyles"
-    class="py-2 rounded-md text-center md:w-max w-full"
+    class="py-2 rounded-md text-center md:w-max w-full h-max"
   >
     {{ text }}
   </button>

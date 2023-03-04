@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import Icon from "./ui/Icon.vue";
 import NavIcon from "./ui/NavIcon.vue";
+import NavLink from "./ui/NavLink.vue";
 </script>
 
 <template>
@@ -11,32 +12,16 @@ import NavIcon from "./ui/NavIcon.vue";
       <Icon iconName="logo" class="sm:block hidden" />
       <Icon iconName="logoSmall" class="sm:hidden block" />
     </li>
-    <router-link
-      to="/"
-      class="cursor-pointer select-none hidden lg:block hover:bg-gray-100 px-2 py-1 rounded-md"
-      >Home</router-link
-    >
-    <router-link
-      to="/Product"
-      class="cursor-pointer select-none hidden lg:block hover:bg-gray-100 px-2 py-1 rounded-md"
-      >Delivery</router-link
-    >
-    <li
-      class="cursor-pointer select-none hidden lg:block hover:bg-gray-100 px-2 py-1 rounded-md whitespace-nowrap"
-    >
-      About Us
-    </li>
-    <li
-      class="cursor-pointer select-none hidden lg:block hover:bg-gray-100 px-2 py-1 rounded-md"
-    >
-      News
-    </li>
+    <NavLink text="Home" href="/" />
+    <NavLink text="Delivery" href="/Products/rolls" />
+    <NavLink text="About Us" href="/" />
+    <NavLink text="News" href="/" />
     <li class="hidden gap-2 items-center xl:flex whitespace-nowrap">
       <Icon iconName="phone" />
       <h3>+38 097 688 34 38</h3>
     </li>
     <li
-      class="lg:flex hidden items-center gap-2 cursor-pointer bg-gray-100 hover:bg-gray-200 px-2 py-2 font-bold rounded-md"
+      class="lg:flex hidden items-center gap-2 cursor-pointer bg-gray-100 hover:bg-gray-200 transition-all px-2 py-2 font-bold rounded-md"
     >
       <span class="fi fi-gb rounded-sm"></span>
       <h4 class="text-xs select-none">ENG</h4>

@@ -1,9 +1,9 @@
 <script lang="ts" setup>
 import Icon from "./Icon.vue";
-import { TProps } from "./icons/types";
+import { TIcons } from "./icons/types";
 const props = defineProps<{
   title: string;
-  name: TProps;
+  name: TIcons;
 }>();
 </script>
 

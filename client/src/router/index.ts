@@ -13,6 +13,12 @@ const routes: Array<RouteRecordRaw> = [
     props: true,
   },
   {
+    path: "/Products/:category/:id",
+    name: "product",
+    component: () => import("../views/Product.vue"),
+    props: true,
+  },
+  {
     path: "/:pathMatch(.*)*",
     name: "NotFound",
     component: () => import("../views/404.vue"),
@@ -22,6 +28,9 @@ const routes: Array<RouteRecordRaw> = [
 const router = createRouter({
   history: createWebHistory(),
   routes,
+  scrollBehavior(to, from, savedPosition) {
+    return { top: 0 };
+  },
 });
 
 export default router;

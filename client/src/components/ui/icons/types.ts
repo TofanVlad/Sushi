@@ -97,7 +97,7 @@ export const icons = {
   categoryMenu: CategoryMenu,
   cross: Cross,
 };
-export type TProps = keyof typeof icons;
+export type TIcons = keyof typeof icons;
 
 export type TCategories =
   | "rolls"

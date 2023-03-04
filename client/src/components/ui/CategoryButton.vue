@@ -1,17 +1,20 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import Icon from "./Icon.vue";
-import { TProps } from "./icons/types";
+import { TIcons } from "./icons/types";
 interface IProps {
   text: string;
-  iconName?: TProps;
+  iconName?: TIcons;
   image?: string;
   active: boolean;
 }
 const props = defineProps<IProps>();
 
 const imgURL = computed(() => {
-  return new URL(`../images/${props.image}.png`, import.meta.url).href;
+  return new URL(
+    `../../assets/images/Products/${props.image}.png`,
+    import.meta.url
+  ).href;
 });
 </script>
 

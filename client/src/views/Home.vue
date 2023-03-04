@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Categories from "../components/Categories.vue";
 import Button from "../components/ui/Button.vue";
-import Product from "../components/Product.vue";
+import ProdCard from "../components/ProdCard.vue";
 import Carousel from "../components/Carousel.vue";
 import Map from "../components/Map.vue";
 import Application from "../components/Application.vue";
@@ -54,7 +54,19 @@ import Application from "../components/Application.vue";
     <div
       class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full justify-items-center sm:gap-2 gap-4"
     >
-      <Product v-for="(item, index) in 4" :key="index" />
+      <ProdCard
+        v-for="(item, index) in 4"
+        :key="index"
+        :specs="['hot', 'plant']"
+        :type="['new', 'hit']"
+        href="/"
+        title="Gunkan Salmon"
+        :weight="40"
+        image="prod"
+        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis cum blanditiis vel nesciunt labore maiores, in iusto iste fuga temporibus?"
+        :price="190"
+        currency="MDL"
+      />
       <Button
         color="white"
         size="lg"
