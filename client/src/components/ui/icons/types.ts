@@ -30,7 +30,9 @@ import Cart from "./Cart.vue";
 import Burgher from "./Burgher.vue";
 
 import Plus from "./Plus.vue";
+import PlusSmall from "./PlusSmall.vue";
 import Minus from "./Minus.vue";
+import MinusSmall from "./MinusSmall.vue";
 
 import Hot from "./Hot.vue";
 import Plant from "./Plant.vue";
@@ -46,6 +48,7 @@ import Visa from "./Visa.vue";
 import MasterCard from "./MasterCard.vue";
 import Error from "./404.vue";
 import House from "./House.vue";
+import ShoppingBag from "./ShoppingBag.vue";
 
 import DropDown from "./DropDown.vue";
 import LeftArrow from "./LeftArrow.vue";
@@ -77,7 +80,9 @@ export const icons = {
   cart: Cart,
   burgher: Burgher,
   plus: Plus,
+  plusSmall: PlusSmall,
   minus: Minus,
+  minusSmall: MinusSmall,
   hot: Hot,
   plant: Plant,
   lactose: Lactose,
@@ -91,6 +96,7 @@ export const icons = {
   masterCard: MasterCard,
   error: Error,
   house: House,
+  shoppingBag: ShoppingBag,
   dropDown: DropDown,
   leftArrow: LeftArrow,
   rightArrow: RightArrow,

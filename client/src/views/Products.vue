@@ -167,74 +167,6 @@ defineProps<{ name: TCategories }>();
             <h4>Filters</h4>
             <Icon icon-name="categoryMenu" />
           </div>
-          <div class="absolute -top-56 right-[6px]">
-            <Modal v-if="ingredientsModal">
-              <div
-                class="flex justify-between items-center lg:w-[650px] md:w-[550px] sm:w-[450px] w-[calc(100vw-64px)]"
-              >
-                <h2 class="font-bold text-2xl text-gray-900">Filters</h2>
-                <div class="flex gap-4">
-                  <h4
-                    class="text-orange-400 whitespace-nowrap"
-                    v-if="selectedIngredients"
-                  >
-                    Selected: {{ selectedIngredients }}
-                  </h4>
-                  <h4
-                    class="text-orange-400 cursor-pointer whitespace-nowrap h-max"
-                    @click="clearIngredients"
-                  >
-                    Reset all
-                  </h4>
-                  <div
-                    class="p-1 bg-gray-100 cursor-pointer rounded-md h-max"
-                    @click="ingredientsModal = !ingredientsModal"
-                  >
-                    <Icon icon-name="cross" />
-                  </div>
-                </div>
-              </div>
-              <h4 class="w-full text-lg text-gray-500 py-2">Category</h4>
-
-              <div class="flex gap-2 flex-wrap p-1">
-                <CategoryChips
-                  v-for="(item, index) in categories"
-                  :key="index"
-                  :text="item"
-                  :active="index == activeChip"
-                  @click="selectChip(index)"
-                />
-              </div>
-              <h4 class="w-full text-lg text-gray-500 py-2 max-h-[250px]">
-                Type
-              </h4>
-              <div class="max-h-[250px] h-max flex flex-wrap gap-4 p-1">
-                <CategoryButton
-                  v-for="(item, index) in productType"
-                  :key="index"
-                  :active="item.active"
-                  @click="item.active = !item.active"
-                  :iconName="item.iconName"
-                  :text="item.text"
-                />
-              </div>
-              <h4 class="w-full text-lg text-gray-500 py-2 max-h-[250px]">
-                Ingredients
-              </h4>
-              <div
-                class="max-h-[250px] h-max scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded-xl scrollbar-track-gray-100 flex flex-wrap gap-2 p-1"
-              >
-                <CategoryButton
-                  v-for="(item, index) in Ingredients"
-                  :key="index"
-                  :active="item.active"
-                  @click="item.active = !item.active"
-                  :image="item.name"
-                  :text="item.name"
-                />
-              </div>
-            </Modal>
-          </div>
         </div>
       </div>
     </div>
@@ -269,4 +201,69 @@ defineProps<{ name: TCategories }>();
       </div>
     </section>
   </section>
+  <Modal
+    v-if="ingredientsModal"
+    @closeModal="ingredientsModal = !ingredientsModal"
+  >
+    <div class="flex justify-between items-center w-full">
+      <h2 class="font-bold text-2xl text-gray-900">Filters</h2>
+      <div class="flex gap-4 items-center">
+        <h4
+          class="text-orange-400 whitespace-nowrap"
+          v-if="selectedIngredients"
+        >
+          Selected: {{ selectedIngredients }}
+        </h4>
+        <h4
+          class="text-orange-400 hover:text-orange-500 bg-transparent hover:bg-gray-100 rounded-xl px-2 py-1 cursor-pointer whitespace-nowrap h-max"
+          @click="clearIngredients"
+        >
+          Reset all
+        </h4>
+        <div
+          class="p-2 bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-md h-max"
+          @click="ingredientsModal = !ingredientsModal"
+        >
+          <Icon icon-name="cross" />
+        </div>
+      </div>
+    </div>
+    <h4 class="w-full text-lg text-gray-500 py-2">Category</h4>
+
+    <div class="flex gap-2 flex-wrap p-1">
+      <CategoryChips
+        v-for="(item, index) in categories"
+        :key="index"
+        :text="item"
+        :active="index == activeChip"
+        @click="selectChip(index)"
+      />
+    </div>
+    <h4 class="w-full text-lg text-gray-500 py-2 max-h-[250px]">Type</h4>
+    <div
+      class="max-h-[150px] h-full flex flex-wrap gap-4 p-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded-xl scrollbar-track-gray-100"
+    >
+      <CategoryButton
+        v-for="(item, index) in productType"
+        :key="index"
+        :active="item.active"
+        @click="item.active = !item.active"
+        :iconName="item.iconName"
+        :text="item.text"
+      />
+    </div>
+    <h4 class="w-full text-lg text-gray-500 py-2 max-h-[250px]">Ingredients</h4>
+    <div
+      class="max-h-[250px] h-full scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded-xl scrollbar-track-gray-100 flex flex-wrap gap-2 p-1"
+    >
+      <CategoryButton
+        v-for="(item, index) in Ingredients"
+        :key="index"
+        :active="item.active"
+        @click="item.active = !item.active"
+        :image="item.name"
+        :text="item.name"
+      />
+    </div>
+  </Modal>
 </template>
