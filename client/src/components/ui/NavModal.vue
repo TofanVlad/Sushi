@@ -2,7 +2,9 @@
 import { watchEffect, ref } from "vue";
 import { TModals } from "../../composables/modalBehaviour";
 import useModal from "../../composables/modalBehaviour";
+import useAccordeon from "../../composables/accordeonBehaviour";
 const { openedModal, closeModal } = useModal();
+const { closeAccordeon } = useAccordeon();
 
 const props = defineProps<{ name: TModals }>();
 const active = ref(false);
@@ -15,7 +17,10 @@ watchEffect(() => {
 <template>
   <section
     class="fixed w-screen h-screen z-20 top-0 left-0 bg-black/50"
-    @click.stop="closeModal"
+    @click.stop="
+      closeModal();
+      closeAccordeon();
+    "
     v-if="active"
   >
     <div
