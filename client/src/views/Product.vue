@@ -37,7 +37,7 @@ defineProps<{ category: TCategories; id: string }>();
       <Categories :name="category" />
       <div class="absolute lg:top-1/4 top-[110%] flex items-center gap-4">
         <router-link
-          to="/"
+          :to="`/Products/${category}`"
           class="flex items-center text-green-400 bg-white rounded-xl px-4 py-2 hover:bg-gray-200 gap-2"
         >
           <Icon icon-name="leftArrow" class="fill-green-400"></Icon>

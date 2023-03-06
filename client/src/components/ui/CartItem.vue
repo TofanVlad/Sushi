@@ -19,7 +19,7 @@ const imgURL = computed(() => {
 
 <template>
   <div
-    class="w-full bg-gray-100 sm:p-4 p-2 sm:gap-4 gap-2 rounded-xl h-max flex relative items-center select-none"
+    class="w-full bg-gray-100 sm:p-4 p-2 sm:gap-4 gap-2 rounded-xl h-max flex relative items-center select-none transition-all"
   >
     <div
       class="absolute cursor-pointer p-1 bg-gray-200 hover:bg-gray-300 rounded-xl sm:-left-[14px] -left-1 sm:top-auto -top-1"
@@ -41,7 +41,8 @@ const imgURL = computed(() => {
       </h4>
       <h4 class="text-orange-400 text-sm">Weight: {{ weight }}g</h4>
       <h4 class="text-base font-bold sm:hidden block">
-        {{ price }} <span class="text-xs font-medium">{{ currency }}</span>
+        {{ price * amountVal }}
+        <span class="text-xs font-medium">{{ currency }}</span>
       </h4>
     </div>
     <div class="ml-auto flex gap-4 items-center">
@@ -59,7 +60,7 @@ const imgURL = computed(() => {
         <div class="select-none">{{ amountVal }}</div>
         <div
           class="rounded-lg sm:p-2 p-1 bg-white hover:bg-gray-200 cursor-pointer w-8 h-8 flex items-center justify-center"
-          @click="amountVal++"
+          @click="amountVal < 20 && amountVal++"
         >
           <Icon icon-name="plusSmall" class="fill-black" />
         </div>

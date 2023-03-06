@@ -2,7 +2,7 @@
 import { watchEffect, ref } from "vue";
 import { TModals } from "../../composables/modalBehaviour";
 import useModal from "../../composables/modalBehaviour";
-const { closeModal, openedModal } = useModal();
+const { openedModal, closeModal } = useModal();
 
 const props = defineProps<{ name: TModals }>();
 const active = ref(false);
@@ -13,16 +13,16 @@ watchEffect(() => {
 </script>
 
 <template>
-  <div
-    class="w-screen h-screen fixed top-0 left-0 bg-black/50 z-10"
-    @click="closeModal"
+  <section
+    class="fixed w-screen h-screen z-20 top-0 left-0 bg-black/50"
+    @click.stop="closeModal"
     v-if="active"
   >
     <div
-      class="bg-white flex-wrap sm:flex gap-2 overflow-hidden absolute shadow-md p-4 outline outline-1 outline-orange-500 rounded-lg sm:right-8 right-2 sm:left-auto left-2 top-28 z-20 lg:w-[650px] md:w-[550px] sm:w-[450px] sm:max-h-[550px] max-h-[calc(100vh-120px)]"
+      class="bg-white absolute top-28 xl:left-1/2 lg:left-[40%] md:left-1/4 sm:left-[20%] sm:right-auto right-2 left-2 rounded-xl lg:w-[590px] md:w-[540px] sm:w-[490px] flex flex-col gap-4 z-40 overflow-hidden sm:max-h-[550px] max-h-[calc(100vh-120px)]"
       @click.stop
     >
       <slot> </slot>
     </div>
-  </div>
+  </section>
 </template>

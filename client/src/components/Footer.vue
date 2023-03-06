@@ -31,11 +31,21 @@ import Button from "./ui/Button.vue";
       class="text-base w-max 2xl:justify-self-start lg:justify-self-center justify-self-start"
     >
       <h4 class="text-gray-400 text-sm mb-4">Navigation</h4>
-      <li class="cursor-pointer mt-1">Home</li>
-      <li class="cursor-pointer mt-1">Menu</li>
-      <li class="cursor-pointer mt-1">Delivery</li>
-      <li class="cursor-pointer mt-1">Jobs</li>
-      <li class="cursor-pointer mt-1">News</li>
+      <li class="cursor-pointer mt-1">
+        <router-link to="/">Home </router-link>
+      </li>
+      <li class="cursor-pointer mt-1">
+        <router-link to="/Products/rolls">Menu </router-link>
+      </li>
+      <li class="cursor-pointer mt-1">
+        <router-link to="/Delivery">Delivery </router-link>
+      </li>
+      <li class="cursor-pointer mt-1">
+        <router-link to="/About Us">Jobs </router-link>
+      </li>
+      <li class="cursor-pointer mt-1">
+        <router-link to="/News">News </router-link>
+      </li>
     </ul>
     <ul class="text-base w-max justify-self-end">
       <h4 class="text-gray-400 text-sm mb-4 font-normal">Checkout</h4>

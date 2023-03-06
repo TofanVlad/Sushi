@@ -2,66 +2,27 @@
 import { ref, reactive, computed } from "vue";
 
 import Modal from "../components/ui/Modal.vue";
+import Filter from "../components/Filter.vue";
 import ProdCard from "../components/ProdCard.vue";
 import Button from "../components/ui/Button.vue";
 import CategoryChips from "../components/ui/CategoryChips.vue";
 import CategoryButton from "../components/ui/CategoryButton.vue";
 import Categories from "../components/Categories.vue";
 import Icon from "../components/ui/Icon.vue";
+import useModal from "../composables/modalBehaviour";
 
 import { TCategories, TIcons } from "../components/ui/icons/types";
+import {
+  Ingredients,
+  activeChip,
+  categories,
+  productType,
+  selectChip,
+  selectedIngredients,
+} from "../constants";
+const { openModal, openedModal } = useModal();
 
-const categories = ref(["All", "Classic", "Maki", "Baked", "Sweet"]);
-
-const activeChip = ref(0);
-const activeChipValue = ref(categories.value[0]);
-const ingredientsModal = ref(false);
 const ingredientsMore = ref(false);
-
-interface TProductType {
-  active: boolean;
-  iconName: TIcons;
-  text: string;
-}
-
-const productType: TProductType[] = reactive([
-  { active: false, iconName: "hot", text: "Spicy" },
-  { active: false, iconName: "plant", text: "Vegetarian" },
-  { active: false, iconName: "lactose", text: "Lactose-free" },
-]);
-
-const Ingredients = reactive([
-  { name: "Salmon", active: false },
-  { name: "Eel", active: false },
-  { name: "Tuna", active: false },
-  { name: "Chicken Breast", active: false },
-  { name: "Tofu", active: false },
-  { name: "Cream Cheese", active: false },
-  { name: "Avocado", active: false },
-  { name: "Tomato", active: false },
-  { name: "Mushroom", active: false },
-]);
-
-const clearIngredients = () => {
-  Ingredients.forEach((element) => {
-    element.active = false;
-  });
-  productType.forEach((element) => {
-    element.active = false;
-  });
-};
-
-const selectedIngredients = computed(() => {
-  let selected = 0;
-  Ingredients.map((item) => item.active && selected++);
-  productType.map((item) => item.active && selected++);
-  return selected;
-});
-
-const selectChip = (index: number) => {
-  activeChip.value = index;
-  activeChipValue.value = categories.value[index];
-};
 
 defineProps<{ name: TCategories }>();
 </script>
@@ -99,7 +60,7 @@ defineProps<{ name: TCategories }>();
             v-for="(item, index) in categories"
             :key="index"
             :text="item"
-            :active="index == activeChip"
+            :active="index == activeChip.id"
             @click="selectChip(index)"
           />
         </div>
@@ -156,16 +117,24 @@ defineProps<{ name: TCategories }>();
         <div class="relative text-gray-500 select-none">
           <div
             class="absolute rounded-full bg-[#FF6633] sm:w-7 w-5 sm:h-7 h-5 sm:text-base text-sm text-white -top-2 -right-2 flex items-center justify-center"
-            v-if="selectedIngredients > 0 && !ingredientsModal"
+            v-if="selectedIngredients > 0 && !openedModal"
           >
             {{ selectedIngredients }}
           </div>
           <div
-            class="cursor-pointer flex gap-2 items-center justify-center bg-white hover:bg-gray-200 p-4 rounded-lg"
-            @click="ingredientsModal = !ingredientsModal"
+            class="cursor-pointer flex gap-2 items-center justify-center outline outline-2 p-4 rounded-lg"
+            :class="
+              openedModal
+                ? 'outline-white bg-orange-500 text-white'
+                : ' outline-gray-200 bg-white hover:bg-gray-100'
+            "
+            @click="openModal('filter')"
           >
             <h4>Filters</h4>
-            <Icon icon-name="categoryMenu" />
+            <Icon
+              icon-name="categoryMenu"
+              :class="openedModal ? 'fill-white' : 'fill-gray-500'"
+            />
           </div>
         </div>
       </div>
@@ -201,69 +170,5 @@ defineProps<{ name: TCategories }>();
       </div>
     </section>
   </section>
-  <Modal
-    v-if="ingredientsModal"
-    @closeModal="ingredientsModal = !ingredientsModal"
-  >
-    <div class="flex justify-between items-center w-full">
-      <h2 class="font-bold text-2xl text-gray-900">Filters</h2>
-      <div class="flex gap-4 items-center">
-        <h4
-          class="text-orange-400 whitespace-nowrap"
-          v-if="selectedIngredients"
-        >
-          Selected: {{ selectedIngredients }}
-        </h4>
-        <h4
-          class="text-orange-400 hover:text-orange-500 bg-transparent hover:bg-gray-100 rounded-xl px-2 py-1 cursor-pointer whitespace-nowrap h-max"
-          @click="clearIngredients"
-        >
-          Reset all
-        </h4>
-        <div
-          class="p-2 bg-gray-100 hover:bg-gray-200 cursor-pointer rounded-md h-max"
-          @click="ingredientsModal = !ingredientsModal"
-        >
-          <Icon icon-name="cross" />
-        </div>
-      </div>
-    </div>
-    <h4 class="w-full text-lg text-gray-500 py-2">Category</h4>
-
-    <div class="flex gap-2 flex-wrap p-1">
-      <CategoryChips
-        v-for="(item, index) in categories"
-        :key="index"
-        :text="item"
-        :active="index == activeChip"
-        @click="selectChip(index)"
-      />
-    </div>
-    <h4 class="w-full text-lg text-gray-500 py-2 max-h-[250px]">Type</h4>
-    <div
-      class="max-h-[150px] h-full flex flex-wrap gap-4 p-1 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded-xl scrollbar-track-gray-100"
-    >
-      <CategoryButton
-        v-for="(item, index) in productType"
-        :key="index"
-        :active="item.active"
-        @click="item.active = !item.active"
-        :iconName="item.iconName"
-        :text="item.text"
-      />
-    </div>
-    <h4 class="w-full text-lg text-gray-500 py-2 max-h-[250px]">Ingredients</h4>
-    <div
-      class="max-h-[250px] h-full scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded-xl scrollbar-track-gray-100 flex flex-wrap gap-2 p-1"
-    >
-      <CategoryButton
-        v-for="(item, index) in Ingredients"
-        :key="index"
-        :active="item.active"
-        @click="item.active = !item.active"
-        :image="item.name"
-        :text="item.name"
-      />
-    </div>
-  </Modal>
+  <Filter />
 </template>
