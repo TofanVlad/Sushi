@@ -60,11 +60,13 @@ const cartItems = ref(10);
           sum <span class="text-gray-700 text-base">MDL</span>
         </h2>
       </div>
-      <button
+      <router-link
+        to="/Checkout"
         class="bg-green-500 hover:bg-green-600 text-white rounded-lg px-4 py-2"
+        @click="closeModal"
       >
         Checkout
-      </button>
+      </router-link>
     </div>
   </NavModal>
 </template>
