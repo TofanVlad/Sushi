@@ -112,7 +112,7 @@ defineProps<{ category: TCategories; id: string }>();
             }}</span>
           </h2>
           <button
-            class="bg-green-500 hover:bg-green-600 transition-all md:self-end flex gap-2 items-center justify-center sm:text-xl text-base text-white w-full md:w-[350px] py-2 rounded-xl h-max"
+            class="bg-green-500 hover:bg-green-600 transition-all md:self-end flex gap-2 items-center justify-center sm:text-xl text-base text-white w-full md:w-[350px] py-2 rounded-xl h-full"
           >
             Add to Cart
             <Icon icon-name="cart" class="fill-white sm:block hidden" />

@@ -87,7 +87,9 @@ defineProps<{ name: TCategories }>();
           :key="index"
         />
       </div>
-      <div class="xl:flex hidden gap-4 w-fit flex-wrap justify-end">
+      <div
+        class="xl:flex hidden gap-4 w-fit flex-wrap justify-end xl:max-w-[750px] 2xl:max-w-[950px]"
+      >
         <CategoryButton
           v-for="(item, index) in !ingredientsMore
             ? Ingredients.slice(0, 4)
@@ -117,23 +119,23 @@ defineProps<{ name: TCategories }>();
         <div class="relative text-gray-500 select-none">
           <div
             class="absolute rounded-full bg-[#FF6633] sm:w-7 w-5 sm:h-7 h-5 sm:text-base text-sm text-white -top-2 -right-2 flex items-center justify-center"
-            v-if="selectedIngredients > 0 && !openedModal"
+            v-if="selectedIngredients > 0 && openedModal !== 'filter'"
           >
             {{ selectedIngredients }}
           </div>
           <div
             class="cursor-pointer flex gap-2 items-center justify-center outline outline-2 p-4 rounded-lg"
             :class="
-              openedModal
+              openedModal === 'filter'
                 ? 'outline-white bg-orange-500 text-white'
-                : ' outline-gray-200 bg-white hover:bg-gray-100'
+                : ' outline-gray-200 bg-white hover:bg-gray-100 text-gray-500'
             "
             @click="openModal('filter')"
           >
             <h4>Filters</h4>
             <Icon
               icon-name="categoryMenu"
-              :class="openedModal ? 'fill-white' : 'fill-gray-500'"
+              :class="openedModal === 'filter' ? 'fill-white' : 'fill-gray-500'"
             />
           </div>
         </div>

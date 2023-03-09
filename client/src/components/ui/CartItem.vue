@@ -53,7 +53,7 @@ const imgURL = computed(() => {
       <div class="flex gap-2 items-center">
         <div
           class="rounded-lg sm:p-2 p-1 bg-white hover:bg-gray-200 cursor-pointer w-8 h-8 flex items-center justify-center"
-          @click="amountVal > 0 && amountVal--"
+          @click="amountVal > 1 && amountVal--"
         >
           <Icon icon-name="minusSmall" class="fill-black" />
         </div>

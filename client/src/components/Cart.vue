@@ -35,21 +35,7 @@ const cartItems = ref(10);
         :key="index"
       />
     </div>
-    <div
-      class="w-full h-[350px] text-center flex flex-col justify-center items-center sm:text-2xl text-xl font-bold bg-gray-200 py-8 px-2 rounded-md"
-      v-else
-    >
-      <Icon icon-name="shoppingBag" />
-      Your cart is currently empty.
-      <span>Let's fill it up! </span>
-      <router-link
-        to="/Products/rolls"
-        class="sm:w-1/2 w-3/4 py-2 bg-green-400 hover:bg-green-500 transition-all rounded-lg text-white font-medium text-xl mt-auto"
-        @click="$emit('closeModal')"
-      >
-        Catalog
-      </router-link>
-    </div>
+
     <div
       class="w-full bg-gray-100 flex items-center justify-between p-4"
       v-if="cartItems > 0"
@@ -66,6 +52,21 @@ const cartItems = ref(10);
         @click="closeModal"
       >
         Checkout
+      </router-link>
+    </div>
+    <div
+      class="w-full h-[350px] text-center flex flex-col justify-center items-center sm:text-2xl text-xl font-bold bg-gray-200 py-8 px-2 rounded-md"
+      v-else
+    >
+      <Icon icon-name="shoppingBag" />
+      Your cart is currently empty.
+      <span>Let's fill it up! </span>
+      <router-link
+        to="/Products/rolls"
+        class="sm:w-1/2 w-3/4 py-2 bg-green-400 hover:bg-green-500 transition-all rounded-lg text-white font-medium text-xl mt-auto"
+        @click="closeModal"
+      >
+        Catalog
       </router-link>
     </div>
   </NavModal>

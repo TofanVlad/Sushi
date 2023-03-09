@@ -20,7 +20,7 @@ const imgURL = computed(() => {
 
 <template>
   <div
-    class="bg-white hover:bg-gray-200 outline rounded-md px-4 py-2 flex gap-2 cursor-pointer w-max items-center font-medium h-[56px] select-none whitespace-nowrap"
+    class="bg-white hover:bg-gray-200 outline rounded-md sm:px-4 px-2 sm:py-2 py-1 flex gap-2 cursor-pointer w-max items-center font-medium sm:h-[56px] h-[46px] select-none whitespace-nowrap"
     :class="
       active == true
         ? 'outline-orange-500 outline-2'
@@ -29,6 +29,6 @@ const imgURL = computed(() => {
   >
     <Icon :icon-name="iconName" v-if="iconName" />
     <img :src="imgURL" :alt="image" v-if="image" />
-    <h4>{{ text }}</h4>
+    <h4 class="sm:text-base text-sm">{{ text }}</h4>
   </div>
 </template>

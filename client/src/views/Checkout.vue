@@ -1,10 +1,14 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { Ref, ref, reactive } from "vue";
 import CheckoutInput from "../components/ui/CheckoutInput.vue";
+import CheckoutButton from "../components/ui/CheckoutButton.vue";
+import CheckoutDelivery from "../components/ui/CheckoutDelivery.vue";
 import Categories from "../components/Categories.vue";
 import Icon from "../components/ui/Icon.vue";
 const name = ref("");
 const phone = ref("");
+
+const activeDelivery: Ref<"Delivery" | "Pickup"> = ref("Delivery");
 </script>
 
 <template>
@@ -29,18 +33,41 @@ const phone = ref("");
       </div>
       <h1 class="font-bold text-5xl my-8">Checkout</h1>
       <section class="flex justify-between">
-        <div class="bg-white p-4 w-max flex rounded-lg flex-col gap-4">
-          <h2 class="text-2xl font-semibold">Private data</h2>
-          <div class="flex gap-4">
-            <CheckoutInput v-model="name" title="Name" placeholder="Name..." />
-            <CheckoutInput
-              v-model="phone"
-              title="Phone Number"
-              placeholder="Phone Number..."
-            />
+        <div class="flex flex-col gap-4">
+          <div class="bg-white p-4 w-max flex rounded-lg flex-col gap-4">
+            <h2 class="text-2xl font-semibold">Private data</h2>
+            <div class="flex gap-4">
+              <CheckoutInput
+                v-model="name"
+                title="Name"
+                placeholder="Name..."
+              />
+              <CheckoutInput
+                v-model="phone"
+                title="Phone Number"
+                placeholder="Phone Number..."
+              />
+            </div>
+          </div>
+          <div class="bg-white rounded-lx p-4 flex flex-col gap-2">
+            <h2 class="text-2xl font-bold">Delivery</h2>
+            <div
+              class="flex bg-gray-100 rounded-lg max-h-[50px] px-2 py-1 transition-all"
+            >
+              <CheckoutButton
+                :active="activeDelivery === 'Delivery'"
+                @click="activeDelivery = 'Delivery'"
+                text="Delivery"
+              />
+              <CheckoutButton
+                :active="activeDelivery === 'Pickup'"
+                @click="activeDelivery = 'Pickup'"
+                text="Pickup"
+              />
+            </div>
+            <CheckoutDelivery :active="activeDelivery" />
           </div>
         </div>
-        <div></div>
       </section>
     </main>
   </main>

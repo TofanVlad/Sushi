@@ -52,7 +52,7 @@ const clearIngredients = () => {
     </div>
 
     <div
-      class="flex flex-col sm:max-h-max max-h-[250px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thumb-rounded-xl"
+      class="flex flex-col max-h-max scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-100 scrollbar-thumb-rounded-xl"
     >
       <h4 class="w-full text-lg text-gray-500 py-2">Category</h4>
 
@@ -80,7 +80,7 @@ const clearIngredients = () => {
       </div>
       <h4 class="w-full text-lg text-gray-500 py-2">Ingredients</h4>
       <div
-        class="max-h-[250px] h-full scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded-xl scrollbar-track-gray-100 flex flex-wrap gap-2 p-1"
+        class="md:h-fit h-full max-h-[270px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded-xl scrollbar-track-gray-100 flex flex-wrap gap-2 p-1"
       >
         <CategoryButton
           v-for="(item, index) in Ingredients"

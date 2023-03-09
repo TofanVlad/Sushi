@@ -56,6 +56,7 @@ import RightArrow from "./RightArrow.vue";
 
 import CategoryMenu from "./CategoryMenu.vue";
 import Cross from "./Cross.vue";
+import Map from "./Map.vue";
 
 export const icons = {
   logo: Logo,
@@ -102,6 +103,7 @@ export const icons = {
   rightArrow: RightArrow,
   categoryMenu: CategoryMenu,
   cross: Cross,
+  map: Map,
 };
 export type TIcons = keyof typeof icons;
 
