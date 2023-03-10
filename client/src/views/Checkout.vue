@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { Ref, ref, reactive } from "vue";
+import CheckoutContainer from "../components/ui/CheckoutContainer.vue";
 import CheckoutInput from "../components/ui/CheckoutInput.vue";
 import CheckoutButton from "../components/ui/CheckoutButton.vue";
 import CheckoutDelivery from "../components/ui/CheckoutDelivery.vue";
@@ -14,7 +15,7 @@ const activeDelivery: Ref<"Delivery" | "Pickup"> = ref("Delivery");
 <template>
   <main>
     <main class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] sm:px-2 px-1">
-      <div class="relative">
+      <div class="relative mb-20">
         <Categories />
         <div class="absolute lg:top-1/4 top-[110%] flex items-center gap-4">
           <router-link
@@ -33,23 +34,25 @@ const activeDelivery: Ref<"Delivery" | "Pickup"> = ref("Delivery");
       </div>
       <h1 class="font-bold text-5xl my-8">Checkout</h1>
       <section class="flex justify-between">
-        <div class="flex flex-col gap-4">
-          <div class="bg-white p-4 w-max flex rounded-lg flex-col gap-4">
+        <div class="flex flex-col">
+          <CheckoutContainer>
             <h2 class="text-2xl font-semibold">Private data</h2>
             <div class="flex gap-4">
               <CheckoutInput
                 v-model="name"
                 title="Name"
                 placeholder="Name..."
+                :required="true"
               />
               <CheckoutInput
                 v-model="phone"
                 title="Phone Number"
                 placeholder="Phone Number..."
+                :required="true"
               />
             </div>
-          </div>
-          <div class="bg-white rounded-lx p-4 flex flex-col gap-2">
+          </CheckoutContainer>
+          <CheckoutContainer>
             <h2 class="text-2xl font-bold">Delivery</h2>
             <div
               class="flex bg-gray-100 rounded-lg max-h-[50px] px-2 py-1 transition-all"
@@ -65,8 +68,8 @@ const activeDelivery: Ref<"Delivery" | "Pickup"> = ref("Delivery");
                 text="Pickup"
               />
             </div>
-            <CheckoutDelivery :active="activeDelivery" />
-          </div>
+          </CheckoutContainer>
+          <CheckoutDelivery :active="activeDelivery" />
         </div>
       </section>
     </main>

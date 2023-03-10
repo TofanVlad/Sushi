@@ -29,7 +29,7 @@ defineProps<{ name: TCategories }>();
 
 <template>
   <section class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] sm:px-2 px-1">
-    <div class="relative">
+    <div class="relative mb-20">
       <Categories :name="name" />
       <div class="absolute lg:top-1/4 top-[110%] flex items-center gap-4">
         <router-link
@@ -47,7 +47,7 @@ defineProps<{ name: TCategories }>();
       </div>
     </div>
 
-    <h1 class="font-bold text-5xl capitalize mt-20">
+    <h1 class="font-bold text-5xl capitalize">
       {{ name }}
     </h1>
 

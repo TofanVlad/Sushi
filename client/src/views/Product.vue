@@ -33,7 +33,7 @@ defineProps<{ category: TCategories; id: string }>();
 
 <template>
   <main class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] sm:px-2 px-1">
-    <div class="relative">
+    <div class="relative mb-20">
       <Categories :name="category" />
       <div class="absolute lg:top-1/4 top-[110%] flex items-center gap-4">
         <router-link

@@ -1,30 +1,32 @@
 <script setup lang="ts">
-import Icon from "./Icon.vue";
-defineProps<{ active: boolean; title: string; text: string; id: string }>();
+defineProps<{
+  text: string;
+  active: boolean;
+  id: string;
+  name: string;
+  modelValue: string;
+}>();
+const handleInput = (event: Event) => {
+  const isEventValid = event.target instanceof HTMLInputElement;
+  emit("update:modelValue", isEventValid ? event.target.value : "");
+};
+const emit = defineEmits(["update:modelValue"]);
 </script>
 
 <template>
-  <label
-    :for="id"
-    class="flex transition-all items-center gap-4 outline outline-2 outline-gray-200 hover:outline-orange-400 px-4 py-2 rounded-xl cursor-pointer"
-  >
-    <Icon
-      icon-name="map"
-      :class="active ? 'fill-orange-400' : 'fill-gray-500'"
-    />
-    <div class="flex flex-col justify-between">
-      <h3 class="text-sm">{{ title }}</h3>
-      <h4 class="text-gray-400 text-xs">{{ text }}</h4>
-    </div>
+  <div class="flex gap-2 cursor-pointer w-max">
     <input
       type="radio"
-      class="ml-auto cursor-pointer border-2"
+      class="border-2 cursor-pointer"
+      :name="name"
+      :id="id"
       :checked="active"
       :class="active ? 'border-orange-400' : 'border-[#191919]'"
-      :id="id"
-      name="adress"
+      :value="modelValue"
+      @input="handleInput"
     />
-  </label>
+    <label class="cursor-pointer" :for="id">{{ text }}</label>
+  </div>
 </template>
 
 <style scoped>

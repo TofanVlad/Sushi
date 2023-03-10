@@ -1,4 +1,4 @@
-import { ref, reactive, computed } from "vue";
+import { Ref, ref, reactive, computed } from "vue";
 import { TIcons } from "./components/ui/icons/types";
 
 interface TProductType {
@@ -45,5 +45,29 @@ const selectedIngredients = computed(() => {
   return selected;
 });
 
+const adresses = [
+  {
+    title: "Киев, Николая Краснова, 16",
+    text: "Подьезд 5, этаж 3, квартира 104",
+  },
+  {
+    title: "Киев, Большая Китаевская, 16",
+    text: "Подьезд 5, этаж 3, квартира 104",
+  },
+  {
+    title: "Львов, Октябрьская, 6",
+    text: "Подьезд 5, этаж 3, квартира 104",
+  },
+]
 
-export { selectedIngredients,categories, activeChip, productType, Ingredients, selectChip }
+const payment = [
+  "Cash",
+  "By terminal",
+  "Online payment",
+  "Pay through PayPal",
+] as const
+
+export type TPayment = Ref<typeof payment[number]>
+
+
+export { selectedIngredients,categories, activeChip, productType, Ingredients, selectChip, adresses, payment }
