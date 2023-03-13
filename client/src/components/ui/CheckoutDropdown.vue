@@ -10,9 +10,14 @@ defineProps<{ options: Array<string>; title: string }>();
       class="select relative max-h-[50px] w-full bg-gray-100 hover:bg-gray-200 rounded-lg"
     >
       <select
-        class="border-none outline-none bg-transparent px-4 py-2 cursor-pointer w-full"
+        class="border-none outline-none bg-transparent px-4 py-2 cursor-pointer w-full overflow-hidden whitespace-nowrap text-ellipsis"
       >
-        <option :value="item" v-for="(item, index) in options" :key="index">
+        <option
+          :value="item"
+          class="overflow-hidden whitespace-nowrap text-ellipsis"
+          v-for="(item, index) in options"
+          :key="index"
+        >
           {{ item }}
         </option>
       </select>

@@ -16,13 +16,16 @@ import CheckoutCheckbox from "../components/ui/CheckoutCheckbox.vue";
 import Categories from "../components/Categories.vue";
 import Icon from "../components/ui/Icon.vue";
 
-import { payment, TPayment } from "../constants";
+import { payment, TPayment, promoCodes } from "../constants";
 
 const activePayment = ref(0);
 
 const changeAmount = ref(0);
 const name = ref("");
 const phone = ref("");
+
+const promoCode = ref("");
+const isPromoCodeValid: Ref<null | boolean> = ref(null);
 
 const isUserLogined = ref(false);
 
@@ -36,6 +39,10 @@ const getCheckoutComponent = computed(() => {
     ? CheckoutDelivery
     : CheckoutPickup;
 });
+
+const checkPromoCode = () => {
+  isPromoCodeValid.value = promoCodes.includes(promoCode.value);
+};
 </script>
 
 <template>
@@ -74,7 +81,7 @@ const getCheckoutComponent = computed(() => {
     <section
       class="flex md:flex-row flex-col md:gap-4 gap-0 justify-between md:mb-8 mb-4"
     >
-      <section class="flex flex-col lg:min-w-[475px]">
+      <section class="flex flex-col lg:min-w-[475px] max-w-[475px]">
         <CheckoutContainer>
           <h2 class="text-3xl font-bold">Private data</h2>
           <div
@@ -178,7 +185,10 @@ const getCheckoutComponent = computed(() => {
               type="number"
             />
           </div>
-          <CheckoutTextarea title="Order details" />
+          <CheckoutTextarea
+            title="Order details"
+            placeholder="My dear courier..."
+          />
           <CheckoutCheckbox text="I have cat" />
           <CheckoutCheckbox text="I have dog" />
         </CheckoutContainer>
@@ -224,6 +234,39 @@ const getCheckoutComponent = computed(() => {
               image="Cola"
             />
           </div>
+        </div>
+        <div
+          class="flex md:mx-4 mx-auto gap-2 md:justify-start justify-center items-center mt-4"
+        >
+          <div
+            class="md:bg-white bg-gray-100 px-2 py-2 rounded-lg flex gap-1 outline outline-2"
+            :class="
+              isPromoCodeValid == false
+                ? 'outline-red-400'
+                : isPromoCodeValid == true
+                ? 'outline-green-400'
+                : 'outline-orange-400'
+            "
+          >
+            <input
+              type="text"
+              v-model="promoCode"
+              class="max-w-[150px] outline-none bg-transparent"
+              placeholder="Promo Code..."
+              :class="
+                isPromoCodeValid == false
+                  ? 'text-red-400'
+                  : isPromoCodeValid == true && 'text-green-400'
+              "
+            />
+            <Icon icon-name="error" v-if="isPromoCodeValid == false" />
+          </div>
+          <button
+            class="text-green-400 md:bg-white bg-gray-100 hover:bg-gray-200 px-4 py-2 rounded-lg"
+            @click="checkPromoCode"
+          >
+            Apply
+          </button>
         </div>
         <div
           class="md:px-4 px-0 py-4 bg-white mt-4 rounded-xl md:mx-4 mx-0 flex justify-between gap-2"

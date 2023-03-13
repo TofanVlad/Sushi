@@ -8,8 +8,8 @@ withDefaults(
   defineProps<{
     title: string;
     required?: boolean;
-    placeholder: string;
-    modelValue?: string | number;
+    placeholder?: string;
+    modelValue?: null | string | number;
     currency?: string;
     type?: "number" | "text";
     active?: boolean;
@@ -17,6 +17,7 @@ withDefaults(
   {
     type: "text",
     active: true,
+    modelValue: null,
   }
 );
 const emit = defineEmits(["update:modelValue"]);
@@ -40,7 +41,7 @@ const emit = defineEmits(["update:modelValue"]);
         :name="title"
         :placeholder="placeholder"
         :value="modelValue"
-        :disabled="active"
+        :disabled="active === false"
         class="w-full border-none bg-transparent outline-none text-base disabled:text-gray-400"
         @input="handleInput"
       />

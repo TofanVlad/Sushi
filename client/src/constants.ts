@@ -68,6 +68,8 @@ const payment = [
 
 const cities = ["London", "Amsterdam", "Chisinau", "Berlin"] as const;
 
+const activeCity: Ref<typeof cities[number]> = ref("London");
+
 const restaurants = {
   London: ["35 Broadway", "52 Albert Road", "95 Windsor Road", "77 Kingsway"],
   Amsterdam: [
@@ -84,6 +86,8 @@ const restaurants = {
   ],
 };
 
+const promoCodes = ['GRISA123','GHE192SR','JWKM12WZ','ORFSQLPO']
+
 export type TPayment = Ref<typeof payment[number]>;
 
 export {
@@ -97,4 +101,6 @@ export {
   payment,
   cities,
   restaurants,
+  activeCity,
+  promoCodes
 };

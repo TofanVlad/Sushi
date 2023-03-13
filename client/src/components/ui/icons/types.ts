@@ -46,7 +46,7 @@ import Telegram from "./Telegram.vue";
 import PB from "./PB.vue";
 import Visa from "./Visa.vue";
 import MasterCard from "./MasterCard.vue";
-import Error from "./404.vue";
+import Error404 from "./404.vue";
 import House from "./House.vue";
 import ShoppingBag from "./ShoppingBag.vue";
 
@@ -57,6 +57,8 @@ import RightArrow from "./RightArrow.vue";
 import CategoryMenu from "./CategoryMenu.vue";
 import Cross from "./Cross.vue";
 import Map from "./Map.vue";
+import Info from "./Info.vue";
+import Error from "./Error.vue"
 
 export const icons = {
   logo: Logo,
@@ -95,7 +97,7 @@ export const icons = {
   pb: PB,
   visa: Visa,
   masterCard: MasterCard,
-  error: Error,
+  error404: Error404,
   house: House,
   shoppingBag: ShoppingBag,
   dropDown: DropDown,
@@ -104,6 +106,8 @@ export const icons = {
   categoryMenu: CategoryMenu,
   cross: Cross,
   map: Map,
+  info: Info,
+  error: Error,
 };
 export type TIcons = keyof typeof icons;
 

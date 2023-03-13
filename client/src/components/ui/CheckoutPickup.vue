@@ -1,12 +1,10 @@
 <script setup lang="ts">
-import { Ref, ref, computed } from "vue";
+import { computed } from "vue";
 import CheckoutChip from "./CheckoutChip.vue";
 import CheckoutContainer from "./CheckoutContainer.vue";
 import CheckoutDropdown from "./CheckoutDropdown.vue";
 
-import { cities, restaurants } from "../../constants";
-
-const activeCity: Ref<typeof cities[number]> = ref("London");
+import { cities, restaurants, activeCity } from "../../constants";
 
 const getCityAdress = computed((): string[] => {
   return restaurants[activeCity.value];
