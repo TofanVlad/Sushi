@@ -6,19 +6,25 @@ defineProps<{ active: boolean; title: string; text: string; id: string }>();
 <template>
   <label
     :for="id"
-    class="flex transition-all items-center gap-4 outline outline-2 outline-gray-200 hover:outline-orange-400 px-4 py-2 rounded-xl cursor-pointer"
+    class="flex transition-all items-center md:justify-start justify-between md:gap-4 gap-2 outline outline-2 outline-gray-200 hover:outline-orange-400 md:px-4 px-3 py-2 rounded-xl cursor-pointer"
   >
     <Icon
       icon-name="map"
       :class="active ? 'fill-orange-400' : 'fill-gray-500'"
     />
-    <div class="flex flex-col justify-between">
-      <h3 class="text-sm">{{ title }}</h3>
-      <h4 class="text-gray-400 text-xs">{{ text }}</h4>
+    <div class="flex flex-col sm:max-w-max max-w-[170px] w-full">
+      <h3 class="text-sm whitespace-nowrap text-ellipsis overflow-hidden">
+        {{ title }}
+      </h3>
+      <h4
+        class="text-gray-400 text-xs whitespace-nowrap text-ellipsis overflow-hidden"
+      >
+        {{ text }}
+      </h4>
     </div>
     <input
       type="radio"
-      class="ml-auto cursor-pointer border-2"
+      class="md:ml-auto ml-0 cursor-pointer border-2"
       :checked="active"
       :class="active ? 'border-orange-400' : 'border-[#191919]'"
       :id="id"

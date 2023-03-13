@@ -1,37 +1,47 @@
 <script setup lang="ts">
-import { ref } from "vue";
-
 const handleInput = (event: Event) => {
   const isEventValid = event.target instanceof HTMLInputElement;
   emit("update:modelValue", isEventValid ? event.target.value : "");
 };
 
-defineProps<{
-  title: string;
-  required?: boolean;
-  placeholder: string;
-  modelValue?: string | number;
-  currency?: string;
-}>();
+withDefaults(
+  defineProps<{
+    title: string;
+    required?: boolean;
+    placeholder: string;
+    modelValue?: string | number;
+    currency?: string;
+    type?: "number" | "text";
+    active?: boolean;
+  }>(),
+  {
+    type: "text",
+    active: true,
+  }
+);
 const emit = defineEmits(["update:modelValue"]);
 </script>
 
 <template>
-  <div class="flex flex-col gap-1">
-    <label class="text-gray-300 text-sm" :for="title"
+  <div class="flex flex-col md:w-auto w-full gap-1">
+    <label class="text-gray-300 text-sm whitespace-nowrap" :for="title"
       >{{ title }} <span class="text-red-400" v-if="required">*</span></label
     >
 
     <div
-      class="relative max-w-[300px] w-full transition-all py-2 pl-3 bg-gray-100 rounded-md outline-2 outline-none hover:outline-orange-400"
-      :class="currency ? 'pr-10' : 'pr-3'"
+      class="relative w-full transition-all py-2 pl-3 bg-gray-100 rounded-md outline-2 outline-none"
+      :class="[
+        currency ? 'pr-10' : 'pr-3',
+        !active && 'hover:outline-orange-400',
+      ]"
     >
       <input
-        type="text"
+        :type="type"
         :name="title"
         :placeholder="placeholder"
         :value="modelValue"
-        class="w-full border-none bg-transparent outline-none text-base"
+        :disabled="active"
+        class="w-full border-none bg-transparent outline-none text-base disabled:text-gray-400"
         @input="handleInput"
       />
       <h5

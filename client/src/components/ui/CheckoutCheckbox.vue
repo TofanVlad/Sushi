@@ -7,7 +7,7 @@ defineProps<{ text: string }>();
     class="flex items-center gap-3 cursor-pointer w-max select-none"
     :for="text"
   >
-    <input type="checkbox" :id="text" />
+    <input type="checkbox" class="cursor-pointer" :id="text" />
     <h3>{{ text }}</h3>
   </label>
 </template>

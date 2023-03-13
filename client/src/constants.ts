@@ -32,7 +32,6 @@ const activeChip = reactive({
   value: categories.value[0],
 });
 
-
 const selectChip = (index: number) => {
   activeChip.id = index;
   activeChip.value = categories.value[index];
@@ -45,7 +44,7 @@ const selectedIngredients = computed(() => {
   return selected;
 });
 
-const adresses = [
+const adresses: Ref<{ title: string; text: string }[]> = ref([
   {
     title: "Киев, Николая Краснова, 16",
     text: "Подьезд 5, этаж 3, квартира 104",
@@ -58,16 +57,44 @@ const adresses = [
     title: "Львов, Октябрьская, 6",
     text: "Подьезд 5, этаж 3, квартира 104",
   },
-]
+]);
 
 const payment = [
   "Cash",
   "By terminal",
   "Online payment",
   "Pay through PayPal",
-] as const
+] as const;
 
-export type TPayment = Ref<typeof payment[number]>
+const cities = ["London", "Amsterdam", "Chisinau", "Berlin"] as const;
 
+const restaurants = {
+  London: ["35 Broadway", "52 Albert Road", "95 Windsor Road", "77 Kingsway"],
+  Amsterdam: [
+    "823 Loenermark",
+    "2025 Arthur Van Schendelstraat",
+    "1728 Van Der Palmkade",
+  ],
+  Chisinau: ["Blvd. Dacia", "Str. Kiev"],
+  Berlin: [
+    "Karl-Liebknecht-Str. 45",
+    "Rudi-Dutschke-Straße 6",
+    "Heidelberger Str. 23",
+    "Kleine Hamburger Str. 39",
+  ],
+};
 
-export { selectedIngredients,categories, activeChip, productType, Ingredients, selectChip, adresses, payment }
+export type TPayment = Ref<typeof payment[number]>;
+
+export {
+  selectedIngredients,
+  categories,
+  activeChip,
+  productType,
+  Ingredients,
+  selectChip,
+  adresses,
+  payment,
+  cities,
+  restaurants,
+};
