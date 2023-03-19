@@ -1,17 +1,17 @@
 <script setup lang="ts">
 import { Ref, ref, computed } from "vue";
-import CheckoutDelivery from "../components/ui/CheckoutDelivery.vue";
-import CheckoutPickup from "../components/ui/CheckoutPickup.vue";
+import CheckoutDelivery from "../components/ui/Checkout/CheckoutDelivery.vue";
+import CheckoutPickup from "../components/ui/Checkout/CheckoutPickup.vue";
 
-import CheckoutContainer from "../components/ui/CheckoutContainer.vue";
-import CheckoutInput from "../components/ui/CheckoutInput.vue";
-import CheckoutButton from "../components/ui/CheckoutButton.vue";
-import CheckoutItem from "../components/ui/CheckoutItem.vue";
-import CheckoutRecommend from "../components/ui/CheckoutRecommend.vue";
-import CheckoutRadio from "../components/ui/CheckoutRadio.vue";
-import CheckoutTextarea from "../components/ui/CheckoutTextarea.vue";
-import CheckoutDropdown from "../components/ui/CheckoutDropdown.vue";
-import CheckoutCheckbox from "../components/ui/CheckoutCheckbox.vue";
+import CheckoutContainer from "../components/ui/Checkout/CheckoutContainer.vue";
+import CheckoutInput from "../components/ui/Checkout/CheckoutInput.vue";
+import CheckoutButton from "../components/ui/Checkout/CheckoutButton.vue";
+import CheckoutItem from "../components/ui/Checkout/CheckoutItem.vue";
+import CheckoutRecommend from "../components/ui/Checkout/CheckoutRecommend.vue";
+import CheckoutRadio from "../components/ui/Checkout/CheckoutRadio.vue";
+import CheckoutTextarea from "../components/ui/Checkout/CheckoutTextarea.vue";
+import CheckoutDropdown from "../components/ui/Checkout/CheckoutDropdown.vue";
+import CheckoutCheckbox from "../components/ui/Checkout/CheckoutCheckbox.vue";
 
 import Categories from "../components/Categories.vue";
 import Icon from "../components/ui/Icon.vue";
@@ -47,7 +47,7 @@ const checkPromoCode = () => {
 
 <template>
   <main
-    class="xl:mx-auto lg:mx-4 mx-2 max-w-[1576px] sm:px-2 px-1 overflow-hidden"
+    class="2xl:mx-auto lg:mx-4 mx-2 max-w-[1576px] sm:px-2 px-1 overflow-hidden"
   >
     <div class="relative mb-20">
       <Categories />
@@ -56,12 +56,12 @@ const checkPromoCode = () => {
           :to="`/`"
           class="flex items-center text-green-400 bg-white rounded-xl px-4 py-2 hover:bg-gray-200 gap-2"
         >
-          <Icon icon-name="leftArrow" class="fill-green-400"></Icon>
+          <Icon icon-name="arrowLeft" class="fill-green-400"></Icon>
           Back
         </router-link>
         <div class="xl:flex hidden gap-1">
           <Icon icon-name="house" />
-          <Icon icon-name="rightArrow" class="fill-gray-400" />
+          <Icon icon-name="arrowRight" class="fill-gray-400" />
           <h4 class="capitalize text-gray-400">Checkout</h4>
         </div>
       </div>
@@ -163,7 +163,7 @@ const checkPromoCode = () => {
             v-model="paymentMethod"
           />
           <CheckoutInput
-            :active="activePayment !== 0"
+            :active="activePayment === 0"
             title="Change"
             placeholder="Sum..."
             v-model="changeAmount"
@@ -277,11 +277,12 @@ const checkPromoCode = () => {
               Sum <span class="text-gray-500 text-sm">MDL</span>
             </h3>
           </div>
-          <button
+          <router-link
+            to="/Check/1D24AD"
             class="lg:px-8 xs:px-6 px-4 xs:py-3 py-2 bg-green-500 hover:bg-green-600 rounded-lg text-white lg:text-2xl xs:text-xl text-lg whitespace-nowrap"
           >
             Make order
-          </button>
+          </router-link>
         </div>
       </section>
     </section>

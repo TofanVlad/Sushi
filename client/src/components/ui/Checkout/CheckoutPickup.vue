@@ -4,7 +4,7 @@ import CheckoutChip from "./CheckoutChip.vue";
 import CheckoutContainer from "./CheckoutContainer.vue";
 import CheckoutDropdown from "./CheckoutDropdown.vue";
 
-import { cities, restaurants, activeCity } from "../../constants";
+import { cities, restaurants, activeCity } from "../../../constants";
 
 const getCityAdress = computed((): string[] => {
   return restaurants[activeCity.value];

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import { ref, reactive } from "vue";
-import Icon from "./Icon.vue";
+import Icon from "../Icon.vue";
 import CheckoutAdress from "./CheckoutAdress.vue";
 import CheckoutCheckbox from "./CheckoutCheckbox.vue";
 import CheckoutContainer from "./CheckoutContainer.vue";
 import CheckoutChip from "./CheckoutChip.vue";
 import CheckoutInput from "./CheckoutInput.vue";
-import { adresses, cities, activeCity } from "../../constants";
+import { adresses, cities, activeCity } from "../../../constants";
 
 const addAdress = ref(false);
 const activeAdress = ref(0);
@@ -89,7 +89,7 @@ const newAdressInfo: { [key: string]: null | string | number } = reactive({
       >
         <div v-if="addAdress === false">Add new Adress</div>
         <div class="flex gap-2 justify-center items-center" v-else>
-          <Icon icon-name="leftArrow" class="fill-green-500" />
+          <Icon icon-name="arrowLeft" class="fill-green-500" />
           Back
         </div>
       </button>

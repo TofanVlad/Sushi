@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { ref, reactive, computed } from "vue";
+import { ref } from "vue";
 
-import Modal from "../components/ui/Modal.vue";
 import Filter from "../components/Filter.vue";
 import ProdCard from "../components/ProdCard.vue";
 import Button from "../components/ui/Button.vue";
-import CategoryChips from "../components/ui/CategoryChips.vue";
-import CategoryButton from "../components/ui/CategoryButton.vue";
+import CategoryChips from "../components/ui/Category/CategoryChips.vue";
+import CategoryButton from "../components/ui/Category/CategoryButton.vue";
 import Categories from "../components/Categories.vue";
 import Icon from "../components/ui/Icon.vue";
 import useModal from "../composables/modalBehaviour";
 
-import { TCategories, TIcons } from "../components/ui/icons/types";
+import { TCategories } from "../components/ui/icons/types";
 import {
   Ingredients,
   activeChip,
@@ -28,7 +27,7 @@ defineProps<{ name: TCategories }>();
 </script>
 
 <template>
-  <section class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] sm:px-2 px-1">
+  <section class="2xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] sm:px-2 px-1">
     <div class="relative mb-20">
       <Categories :name="name" />
       <div class="absolute lg:top-1/4 top-[110%] flex items-center gap-4">
@@ -36,12 +35,12 @@ defineProps<{ name: TCategories }>();
           to="/"
           class="flex items-center text-green-400 bg-white rounded-xl px-4 py-2 hover:bg-gray-200 gap-2"
         >
-          <Icon icon-name="leftArrow" class="fill-green-400"></Icon>
+          <Icon icon-name="arrowLeft" class="fill-green-400"></Icon>
           Back
         </router-link>
         <div class="xl:flex hidden gap-1">
           <Icon icon-name="house" />
-          <Icon icon-name="rightArrow" class="fill-gray-400" />
+          <Icon icon-name="arrowRight" class="fill-gray-400" />
           <h4 class="capitalize text-gray-400">{{ name }}</h4>
         </div>
       </div>
@@ -72,7 +71,7 @@ defineProps<{ name: TCategories }>();
           From expensive to cheap
         </h4>
         <Icon
-          icon-name="dropDown"
+          icon-name="arrowDown"
           class="sm:fill-black fill-gray-400 min-w-[24px]"
         />
       </h4>

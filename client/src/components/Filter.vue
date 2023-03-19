@@ -1,8 +1,8 @@
 <script setup lang="ts">
 import { ref, computed } from "vue";
 import Icon from "./ui/Icon.vue";
-import CategoryChips from "./ui/CategoryChips.vue";
-import CategoryButton from "./ui/CategoryButton.vue";
+import CategoryChips from "./ui/Category/CategoryChips.vue";
+import CategoryButton from "./ui/Category/CategoryButton.vue";
 import Modal from "./ui/Modal.vue";
 import useModal from "../composables/modalBehaviour";
 import {
@@ -80,7 +80,7 @@ const clearIngredients = () => {
       </div>
       <h4 class="w-full text-lg text-gray-500 py-2">Ingredients</h4>
       <div
-        class="md:h-fit h-full max-h-[270px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded-xl scrollbar-track-gray-100 flex flex-wrap gap-2 p-1"
+        class="md:h-fit h-full max-h-[200px] scrollbar-thin scrollbar-thumb-gray-300 scrollbar-thumb-rounded-xl scrollbar-track-gray-100 flex flex-wrap gap-2 p-1"
       >
         <CategoryButton
           v-for="(item, index) in Ingredients"

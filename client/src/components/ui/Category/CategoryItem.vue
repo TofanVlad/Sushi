@@ -1,6 +1,6 @@
 <script lang="ts" setup>
-import Icon from "./Icon.vue";
-import { TIcons } from "./icons/types";
+import Icon from "../Icon.vue";
+import { TIcons } from "../icons/types";
 defineProps<{
   title: string;
   name: TIcons;

@@ -50,15 +50,18 @@ import Error404 from "./404.vue";
 import House from "./House.vue";
 import ShoppingBag from "./ShoppingBag.vue";
 
-import DropDown from "./DropDown.vue";
-import LeftArrow from "./LeftArrow.vue";
-import RightArrow from "./RightArrow.vue";
+import ArrowUp from './ArrowUp.vue'
+import ArrowDown from "./ArrowDown.vue";
+import ArrowDownBig from "./ArrowDownBig.vue"
+import LeftArrow from "./ArrowLeft.vue";
+import RightArrow from "./ArrowRight.vue";
 
 import CategoryMenu from "./CategoryMenu.vue";
 import Cross from "./Cross.vue";
 import Map from "./Map.vue";
 import Info from "./Info.vue";
-import Error from "./Error.vue"
+import Error from "./Error.vue";
+import Check from './Check.vue';
 
 export const icons = {
   logo: Logo,
@@ -100,14 +103,17 @@ export const icons = {
   error404: Error404,
   house: House,
   shoppingBag: ShoppingBag,
-  dropDown: DropDown,
-  leftArrow: LeftArrow,
-  rightArrow: RightArrow,
+  arrowDown: ArrowDown,
+  arrowDownBig: ArrowDownBig,
+  arrowUp: ArrowUp,
+  arrowLeft: LeftArrow,
+  arrowRight: RightArrow,
   categoryMenu: CategoryMenu,
   cross: Cross,
   map: Map,
   info: Info,
   error: Error,
+  check: Check
 };
 export type TIcons = keyof typeof icons;
 

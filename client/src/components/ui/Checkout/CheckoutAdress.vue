@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Icon from "./Icon.vue";
+import Icon from "../Icon.vue";
 defineProps<{ active: boolean; title: string; text: string; id: string }>();
 </script>
 

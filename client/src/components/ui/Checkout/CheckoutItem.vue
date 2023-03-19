@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Icon from "./Icon.vue";
+import Icon from "../Icon.vue";
 import { computed, ref } from "vue";
 interface IProps {
   name: string;
@@ -13,7 +13,7 @@ const { image, amount } = defineProps<IProps>();
 const amountVal = ref(amount);
 
 const imgURL = computed(() => {
-  return new URL(`../../assets/images/${image}.png`, import.meta.url).href;
+  return new URL(`../../../assets/images/${image}.png`, import.meta.url).href;
 });
 </script>
 

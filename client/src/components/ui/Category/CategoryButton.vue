@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from "vue";
-import Icon from "./Icon.vue";
-import { TIcons } from "./icons/types";
+import Icon from "../Icon.vue";
+import { TIcons } from "../icons/types";
 interface IProps {
   text: string;
   iconName?: TIcons;
@@ -12,7 +12,7 @@ const props = defineProps<IProps>();
 
 const imgURL = computed(() => {
   return new URL(
-    `../../assets/images/Products/${props.image}.png`,
+    `../../../assets/images/Products/${props.image}.png`,
     import.meta.url
   ).href;
 });

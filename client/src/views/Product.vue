@@ -32,7 +32,7 @@ defineProps<{ category: TCategories; id: string }>();
 </script>
 
 <template>
-  <main class="xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] sm:px-2 px-1">
+  <main class="2xl:mx-auto sm:mx-4 mx-2 max-w-[1576px] sm:px-2 px-1">
     <div class="relative mb-20">
       <Categories :name="category" />
       <div class="absolute lg:top-1/4 top-[110%] flex items-center gap-4">
@@ -40,14 +40,14 @@ defineProps<{ category: TCategories; id: string }>();
           :to="`/Products/${category}`"
           class="flex items-center text-green-400 bg-white rounded-xl px-4 py-2 hover:bg-gray-200 gap-2"
         >
-          <Icon icon-name="leftArrow" class="fill-green-400"></Icon>
+          <Icon icon-name="arrowLeft" class="fill-green-400"></Icon>
           Back
         </router-link>
         <div class="xl:flex hidden gap-1">
           <Icon icon-name="house" />
-          <Icon icon-name="rightArrow" class="fill-gray-400" />
+          <Icon icon-name="arrowRight" class="fill-gray-400" />
           <h4 class="capitalize text-gray-400">{{ category }}</h4>
-          <Icon icon-name="rightArrow" class="fill-gray-400" />
+          <Icon icon-name="arrowRight" class="fill-gray-400" />
           <h4
             class="capitalize text-gray-400 max-w-[65px] text-ellipsis whitespace-nowrap overflow-hidden"
           >

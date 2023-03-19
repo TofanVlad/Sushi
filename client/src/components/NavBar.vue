@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Ref, ref } from "vue";
 import Icon from "./ui/Icon.vue";
 import NavIcon from "./ui/NavIcon.vue";
 import NavLink from "./ui/NavLink.vue";
@@ -11,7 +10,7 @@ const { openModal } = useModal();
 
 <template>
   <nav
-    class="xl:mx-auto sm:mx-4 list-none mx-2 max-w-[1576px] rounded-xl flex items-center lg:gap-6 md:gap-4 gap-2 py-4 sm:pl-2 pl-1 md:pr-4 px-3 sm:mt-4 mt-2 bg-white shadow-md overflow-x-hidden z-30 fixed left-1/2 -translate-x-1/2"
+    class="list-none max-w-[1576px] rounded-xl flex items-center lg:gap-6 md:gap-4 gap-2 py-4 sm:pl-2 pl-1 md:pr-2 px-3 sm:mt-4 mt-2 bg-white shadow-md overflow-x-hidden z-30 fixed left-1/2 -translate-x-1/2"
   >
     <Icon iconName="logo" class="sm:block hidden" />
     <Icon iconName="logoSmall" class="sm:hidden block" />

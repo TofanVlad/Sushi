@@ -88,6 +88,10 @@ const restaurants = {
 
 const promoCodes = ['GRISA123','GHE192SR','JWKM12WZ','ORFSQLPO']
 
+const checkInfo = ['Adress', 'Time', 'Payment method', 'Total sum', 'Change from']
+
+const checkProgressStages = ['Order Confirmation', 'Cooking', 'Waiting for Courier', 'Courier on the way', 'Courier arrived']
+
 export type TPayment = Ref<typeof payment[number]>;
 
 export {
@@ -102,5 +106,7 @@ export {
   cities,
   restaurants,
   activeCity,
-  promoCodes
+  promoCodes,
+  checkInfo,
+  checkProgressStages
 };

@@ -38,7 +38,7 @@ import Application from "../components/Application.vue";
   </section>
 
   <section
-    class="max-w-[1576px] xl:mx-auto sm:mx-4 mx-2 md:mt-24 mt-16"
+    class="max-w-[1576px] 2xl:mx-auto sm:mx-4 mx-2 md:mt-24 mt-16"
     v-for="item in ['Sushi', 'Rolls', 'Sets', 'Snacks', 'Drinks']"
   >
     <div class="flex md:justify-between justify-center mb-4">

@@ -33,7 +33,7 @@ const emit = defineEmits(["update:modelValue"]);
       class="relative w-full transition-all py-2 pl-3 bg-gray-100 rounded-md outline-2 outline-none"
       :class="[
         currency ? 'pr-10' : 'pr-3',
-        !active && 'hover:outline-orange-400',
+        active && 'hover:outline-orange-400 ',
       ]"
     >
       <input

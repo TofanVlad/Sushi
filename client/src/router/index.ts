@@ -20,8 +20,20 @@ const routes: Array<RouteRecordRaw> = [
   },
   {
     path: "/Checkout",
-    name: 'checkout',
-    component: () => import("../views/Checkout.vue")
+    name: "checkout",
+    component: () => import("../views/Checkout.vue"),
+  },
+  {
+    path: "/Check/:id",
+    name: "check",
+    component: () => import("../views/Check.vue"),
+    props: true,
+  },
+  {
+    path: "/Profile/:id",
+    name: "profile",
+    component: () => import("../views/Profile.vue"),
+    props: true,
   },
   {
     path: "/:pathMatch(.*)*",
