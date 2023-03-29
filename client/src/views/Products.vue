@@ -14,7 +14,7 @@ import { TCategories } from "../components/ui/icons/types";
 import {
   Ingredients,
   activeChip,
-  categories,
+  prodCategories,
   productType,
   selectChip,
   selectedIngredients,
@@ -56,7 +56,7 @@ defineProps<{ name: TCategories }>();
       <div class="justify-between items-center sm:flex hidden">
         <div class="md:gap-4 gap-2 sm:flex hidden">
           <CategoryChips
-            v-for="(item, index) in categories"
+            v-for="(item, index) in prodCategories"
             :key="index"
             :text="item"
             :active="index == activeChip.id"

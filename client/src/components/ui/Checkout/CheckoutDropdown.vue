@@ -39,7 +39,7 @@ select {
   right: 8px;
   width: 20px;
   height: 20px;
-  background-image: url("../../assets/dropDown.svg");
+  background-image: url("@/assets/dropDown.svg");
   /* justify-self: end; */
 }
 select::-ms-expand {

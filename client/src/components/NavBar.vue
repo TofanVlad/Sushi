@@ -4,8 +4,10 @@ import NavIcon from "./ui/NavIcon.vue";
 import NavLink from "./ui/NavLink.vue";
 import Cart from "./Cart.vue";
 import Notifications from "./Notifications.vue";
+import BurgherMenu from "./BurgherMenu.vue";
+import Authentication from "./Authentication.vue";
 import useModal from "../composables/modalBehaviour";
-const { openModal } = useModal();
+const { openModal, openedModal } = useModal();
 </script>
 
 <template>
@@ -33,22 +35,28 @@ const { openModal } = useModal();
         name="bell"
         :notifications="2"
         @click="openModal('bell')"
-        :active="false"
+        :active="openedModal === 'bell'"
       />
       <NavIcon name="heart" :active="false" />
-      <NavIcon name="human" :active="false" />
+      <NavIcon
+        name="human"
+        :active="openedModal === 'human'"
+        @click="openModal('human')"
+      />
       <NavIcon
         name="cart"
         text="Cart"
         class="sm:flex hidden"
-        :active="false"
+        :active="openedModal === 'cart'"
         @click="openModal('cart')"
       />
-      <li class="lg:hidden block">
-        <NavIcon name="burgher" :active="false" />
+      <li class="lg:hidden block" @click="openModal('burgher')">
+        <NavIcon name="burgher" :active="openedModal === 'burgher'" />
       </li>
     </ul>
   </nav>
   <Cart />
   <Notifications />
+  <BurgherMenu />
+  <Authentication />
 </template>

@@ -1,0 +1,39 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="224" height="176" fill="none">
+    <path
+      fill="#EDEDED"
+      d="M222 37c9 24-20 60-43 88s-41 47-63 50c-21 3-48-11-64-35a86 86 0 0 1-8-84c14-26 45-46 84-50s86 7 94 31Z"
+    />
+    <path
+      fill="#F63"
+      d="m138 100 2-3c8-9 21-10 29-3 9 7 10 20 3 29l-27 28c-1 1-3 2-4 1l-33-23c-8-7-10-20-2-29a21 21 0 0 1 32 0Z"
+    />
+    <path
+      stroke="#1D1D1F"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="4"
+      d="m134 95 2-3c8-9 21-10 29-3 9 7 10 20 3 29l-27 28c-1 1-3 2-4 1l-33-23c-8-7-10-20-2-29a21 21 0 0 1 32 0Z"
+    />
+    <path
+      fill="#F63"
+      d="m182 6 1-2c4-4 10-5 14-1 5 3 5 10 2 14a498 498 0 0 1-16 14l-15-11c-5-4-5-10-2-14a10 10 0 0 1 16 0Z"
+    />
+    <path
+      stroke="#1D1D1F"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="4"
+      d="m180 12 1-2c4-4 10-5 14-2 5 4 5 10 2 15a498 498 0 0 1-16 14l-15-11c-5-4-5-10-2-15a10 10 0 0 1 16 1Z"
+    />
+    <path
+      fill="#F63"
+      d="m32 32 2-2c7-6 17-4 22 2 6 7 5 17-2 22a767 767 0 0 1-28 16L6 49c-5-7-4-17 2-22a16 16 0 0 1 24 5Z"
+    />
+    <path
+      stroke="#1D1D1F"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="4"
+      d="m38 30 2-3c7-5 17-4 22 3s4 16-2 22a767 767 0 0 1-28 16L12 46c-6-6-4-16 2-21a16 16 0 0 1 24 5Z"
+    />
+  </svg>

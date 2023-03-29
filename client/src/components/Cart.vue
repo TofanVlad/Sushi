@@ -10,7 +10,7 @@ const cartItems = ref(10);
 
 <template>
   <NavModal name="cart">
-    <div class="flex justify-between p-4">
+    <div class="flex justify-between px-4 pt-4">
       <h2 class="font-bold text-3xl">Your Cart</h2>
       <div
         class="p-2 rounded-md bg-gray-100 cursor-pointer"

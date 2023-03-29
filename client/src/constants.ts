@@ -1,5 +1,5 @@
 import { Ref, ref, reactive, computed } from "vue";
-import { TIcons } from "./components/ui/icons/types";
+import { TIcons, TCategories } from "./components/ui/icons/types";
 
 interface TProductType {
   active: boolean;
@@ -25,16 +25,25 @@ const productType: TProductType[] = reactive([
   { active: false, iconName: "lactose", text: "Lactose-free" },
 ]);
 
-const categories = ref(["All", "Classic", "Maki", "Baked", "Sweet"]);
+const prodCategories = ref(["All", "Classic", "Maki", "Baked", "Sweet"]);
+
+const categories: TCategories[] = [
+  "rolls",
+  "sushi",
+  "sets",
+  "bowls",
+  "drinks",
+  "sauces",
+];
 
 const activeChip = reactive({
   id: 0,
-  value: categories.value[0],
+  value: categories[0],
 });
 
 const selectChip = (index: number) => {
   activeChip.id = index;
-  activeChip.value = categories.value[index];
+  activeChip.value = categories[index];
 };
 
 const selectedIngredients = computed(() => {
@@ -86,17 +95,83 @@ const restaurants = {
   ],
 };
 
-const promoCodes = ['GRISA123','GHE192SR','JWKM12WZ','ORFSQLPO']
+const promoCodes = ["GRISA123", "GHE192SR", "JWKM12WZ", "ORFSQLPO"];
 
-const checkInfo = ['Adress', 'Time', 'Payment method', 'Total sum', 'Change from']
+const checkInfo = [
+  "Adress",
+  "Time",
+  "Payment method",
+  "Total sum",
+  "Change from",
+];
 
-const checkProgressStages = ['Order Confirmation', 'Cooking', 'Waiting for Courier', 'Courier on the way', 'Courier arrived']
+const checkProgressStages = [
+  "Order Confirmation",
+  "Cooking",
+  "Waiting for Courier",
+  "Courier on the way",
+  "Courier arrived",
+];
 
 export type TPayment = Ref<typeof payment[number]>;
+
+const profileMenuLines = {
+  box: "Order History",
+  heart: "Favourite Dishes",
+  map: "Delivery address",
+  sun: "Site theme",
+};
+const selectedProfileMenuLine: Ref<"map" | "box" | "heart" | "sun"> =
+  ref("box");
+
+const selectProfileMenuLine = (
+  icon: Extract<TIcons, "map" | "heart" | "box" | "sun">
+) => {
+  selectedProfileMenuLine.value = icon;
+};
+
+type TProfileSectionInfo = {
+  title: string;
+  icon: TIcons;
+  text: string;
+  desc: string;
+  buttonText?: string;
+};
+
+const profileSectionInfo: Ref<
+  Record<"box" | "map" | "heart" | "sun", TProfileSectionInfo>
+> = ref({
+  box: {
+    title: "Order Addresses",
+    icon: "addressLess" as TIcons,
+    text: "You have no saved addresses",
+    desc: "Go to the category you are interested in and make your first order and the address will be saved automatically",
+    buttonText: "Add address",
+  },
+  heart: {
+    title: "Favourite dishes",
+    icon: "heartLess" as TIcons,
+    text: "You haven't added anything to your favourites yet",
+    desc: "Go to the category you are interested in and mark your favorite",
+  },
+  map: {
+    title: "Orders History",
+    icon: "historyLess" as TIcons,
+    text: "You have no orders",
+    desc: "Go to the category you are interested in and place your first order",
+  },
+  sun: {
+    title: "",
+    icon: "sun" as TIcons,
+    text: "",
+    desc: "",
+  },
+});
 
 export {
   selectedIngredients,
   categories,
+  prodCategories,
   activeChip,
   productType,
   Ingredients,
@@ -108,5 +183,9 @@ export {
   activeCity,
   promoCodes,
   checkInfo,
-  checkProgressStages
+  checkProgressStages,
+  profileMenuLines,
+  selectedProfileMenuLine,
+  selectProfileMenuLine,
+  profileSectionInfo,
 };

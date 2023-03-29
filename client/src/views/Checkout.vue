@@ -81,7 +81,7 @@ const checkPromoCode = () => {
     <section
       class="flex md:flex-row flex-col md:gap-4 gap-0 justify-between md:mb-8 mb-4"
     >
-      <section class="flex flex-col lg:min-w-[475px] max-w-[475px]">
+      <section class="flex flex-col lg:min-w-[475px] lg:max-w-[475px] w-full">
         <CheckoutContainer>
           <h2 class="text-3xl font-bold">Private data</h2>
           <div

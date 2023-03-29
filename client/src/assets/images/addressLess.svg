@@ -1,0 +1,52 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="323" height="203" fill="none">
+    <path
+      fill="#EDEDED"
+      d="M102 172 82 79c-1-4 1-9 5-11l24-13 5-1 31 2c2 1 4 0 6-1l26-15 6-1 26 2c5 1 9 4 10 8l20 93c1 6-4 12-11 12l-21-1c-1-1-3 0-5 1l-27 14c-2 1-3 2-5 1l-32-1c-1-1-3 0-5 1l-18 9c-6 4-13 0-15-6Z"
+    />
+    <circle cx="244" cy="57.2" r="30" fill="#F63" />
+    <path
+      stroke="#1D1D1F"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="5"
+      d="M173 51c0-2 0-3 2-4l36-29h6l36 29c2 1 2 2 2 4v48l-2 7c-2 2-4 3-7 3h-64c-3 0-5-1-7-3l-2-7V51Z"
+    />
+    <path
+      stroke="#1D1D1F"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="5"
+      d="M199 109V62h31v47"
+    />
+    <path fill="#F63" d="M127 168a12 12 0 1 0 0-25 12 12 0 0 0 0 25Z" />
+    <path
+      stroke="#1D1D1F"
+      stroke-dasharray="10 15"
+      stroke-linejoin="round"
+      stroke-width="4"
+      d="M153 195h46c8 0 15-6 15-15 0-8-7-15-15-15h-14c-4 0-7-3-7-7 0-5 3-8 7-8h2c6 0 10-5 10-10v-16"
+    />
+    <path
+      stroke="#000"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="5"
+      d="M157 153c0 25-32 46-32 46s-31-21-31-46a31 31 0 1 1 63 0Z"
+    />
+    <path
+      stroke="#000"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      stroke-width="5"
+      d="M125 164a10 10 0 1 0 0-21 10 10 0 0 0 0 21Z"
+    />
+    <path
+      fill="#F63"
+      d="M88 46c1-3 5-7 9-8l6-1c3 0 4 0 6 2 2 0 3 1 5 3l2 2 2-1c6-2 14 1 17 8l1 3h2c4 1 8 4 10 8l1 6-1 6c-1 3-4 6-7 7l-32 1H79l-2-1c-4-2-7-4-9-8l-1-8 1-7 7-7c3-2 7-3 10-3h2l1-2Z"
+    />
+    <path
+      stroke="#1D1D1F"
+      stroke-width="5"
+      d="M87 41c1-4 5-7 9-8l5-1c3 0 4 0 6 2l4 3 2 2 2-1a14 14 0 0 1 17 10l1 1a13 13 0 0 1 11 13l-1 6c-1 2-4 5-7 6l-29 1H79l-3-1c-3-2-6-4-8-8l-1-7 1-6c1-3 4-7 7-8l9-2h2l1-2Z"
+    />
+  </svg>

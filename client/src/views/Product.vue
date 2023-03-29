@@ -8,7 +8,7 @@ import Icon from "../components/ui/Icon.vue";
 import Specs from "../components/ui/Specs.vue";
 import Type from "../components/ui/Type.vue";
 
-import { TCategories, TIcons } from "../components/ui/icons/types";
+import { TCategories } from "../components/ui/icons/types";
 
 type TType = Array<"hot" | "plant" | "lactose">;
 type TSpecs = Array<"hit" | "new">;

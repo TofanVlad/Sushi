@@ -2,17 +2,9 @@
 import Icon from "./ui/Icon.vue";
 import { TCategories } from "./ui/icons/types";
 import { computed } from "vue";
+import { categories } from "@/constants";
 
 const props = defineProps<{ name?: TCategories }>();
-
-const categories: TCategories[] = [
-  "rolls",
-  "sushi",
-  "sets",
-  "bowls",
-  "drinks",
-  "sauces",
-];
 
 const getIconName = computed(() => {
   return (item: TCategories): TCategories => {

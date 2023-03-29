@@ -50,9 +50,9 @@ import Error404 from "./404.vue";
 import House from "./House.vue";
 import ShoppingBag from "./ShoppingBag.vue";
 
-import ArrowUp from './ArrowUp.vue'
+import ArrowUp from "./ArrowUp.vue";
 import ArrowDown from "./ArrowDown.vue";
-import ArrowDownBig from "./ArrowDownBig.vue"
+import ArrowDownBig from "./ArrowDownBig.vue";
 import LeftArrow from "./ArrowLeft.vue";
 import RightArrow from "./ArrowRight.vue";
 
@@ -61,7 +61,12 @@ import Cross from "./Cross.vue";
 import Map from "./Map.vue";
 import Info from "./Info.vue";
 import Error from "./Error.vue";
-import Check from './Check.vue';
+import Check from "./Check.vue";
+
+import Sun from "./Sun.vue";
+import Box from "./Box.vue";
+
+import Pencil from "./Pencil.vue";
 
 export const icons = {
   logo: Logo,
@@ -113,7 +118,10 @@ export const icons = {
   map: Map,
   info: Info,
   error: Error,
-  check: Check
+  check: Check,
+  sun: Sun,
+  box: Box,
+  pencil: Pencil,
 };
 export type TIcons = keyof typeof icons;
 
