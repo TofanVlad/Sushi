@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import Icon from "./Icon.vue";
 interface IProps {
-  types: Array<"hot" | "plant" | "lactose">;
+  types: Array<"hot" | "vegetarian" | "lactose">;
   classes: "inside" | "outside" | "prod";
 }
 defineProps<IProps>();
@@ -13,7 +13,7 @@ defineProps<IProps>();
     :class="
       item == 'hot'
         ? 'sm:bg-red-100 text-red-500'
-        : item == 'plant'
+        : item == 'vegetarian'
         ? 'sm:bg-lime-100 text-lime-500'
         : 'sm:bg-amber-100 text-amber-500'
     "
@@ -26,7 +26,7 @@ defineProps<IProps>();
       {{
         item == "hot"
           ? "Spicy"
-          : item == "plant"
+          : item == "vegetarian"
           ? "Vegetarian"
           : "Lactose-free"
       }}

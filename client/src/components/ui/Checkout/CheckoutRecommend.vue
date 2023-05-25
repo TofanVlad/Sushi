@@ -1,8 +1,10 @@
 <script setup lang="ts">
 import { computed } from "vue";
 import Icon from "../Icon.vue";
+import useUserStore from "@/store/userStore";
 
 interface IProps {
+  id: string;
   name: string;
   weight: number;
   price: number;
@@ -10,10 +12,11 @@ interface IProps {
   image: string;
 }
 
+const store = useUserStore();
 const { image } = defineProps<IProps>();
 
 const imgURL = computed(() => {
-  return new URL(`../../assets/images/${image}.png`, import.meta.url).href;
+  return new URL(`../../../assets/images/${image}.png`, import.meta.url).href;
 });
 </script>
 
@@ -33,6 +36,7 @@ const imgURL = computed(() => {
       </h4>
       <button
         class="max-h-[38px] bg-green-200 hover:bg-green-300 px-3 py-1 rounded-lg border-none"
+        @click="store.addToCart({ id, quantity: 1 })"
       >
         <Icon icon-name="plus" class="fill-green-400" />
       </button>

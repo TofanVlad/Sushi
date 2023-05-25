@@ -7,6 +7,8 @@ import Notifications from "./Notifications.vue";
 import BurgherMenu from "./BurgherMenu.vue";
 import Authentication from "./Authentication.vue";
 import useModal from "../composables/modalBehaviour";
+import useUserStore from "@/store/userStore";
+const store = useUserStore();
 const { openModal, openedModal } = useModal();
 </script>
 
@@ -38,7 +40,14 @@ const { openModal, openedModal } = useModal();
         :active="openedModal === 'bell'"
       />
       <NavIcon name="heart" :active="false" />
+      <router-link
+        :to="`/Profile/${store.$state.username}`"
+        v-if="store.$state.id !== ''"
+      >
+        <NavIcon name="human" :active="openedModal === 'human'" />
+      </router-link>
       <NavIcon
+        v-else
         name="human"
         :active="openedModal === 'human'"
         @click="openModal('human')"

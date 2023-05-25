@@ -12,7 +12,7 @@ const { closeAccordeon } = useAccordeon();
     <div class="flex justify-between px-4 pt-4">
       <h2 class="font-bold text-3xl">Notifications</h2>
       <div
-        class="p-2 rounded-md bg-gray-100 cursor-pointer"
+        class="p-2 rounded-md bg-gray-100 hover:bg-gray-200 transition-all cursor-pointer"
         @click="
           closeModal();
           closeAccordeon();

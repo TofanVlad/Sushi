@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { Ref, ref, onBeforeMount, computed } from "vue";
 
 import Filter from "../components/Filter.vue";
 import ProdCard from "../components/ProdCard.vue";
@@ -9,6 +9,7 @@ import CategoryButton from "../components/ui/Category/CategoryButton.vue";
 import Categories from "../components/Categories.vue";
 import Icon from "../components/ui/Icon.vue";
 import useModal from "../composables/modalBehaviour";
+import useDishStore from "@/store/dishStore";
 
 import { TCategories } from "../components/ui/icons/types";
 import {
@@ -22,8 +23,17 @@ import {
 const { openModal, openedModal } = useModal();
 
 const ingredientsMore = ref(false);
+const store = useDishStore();
+
+const selectedProducts = computed(() => {
+  return Ingredients.filter((product) => product.active).map(
+    (product) => product.name
+  );
+});
 
 defineProps<{ name: TCategories }>();
+
+onBeforeMount(async () => {});
 </script>
 
 <template>
@@ -49,7 +59,6 @@ defineProps<{ name: TCategories }>();
     <h1 class="font-bold text-5xl capitalize">
       {{ name }}
     </h1>
-
     <div
       class="sm:grid sm:grid-cols-[1fr_fit-content(100%)] flex justify-between mt-8 gap-y-8"
     >
@@ -141,26 +150,51 @@ defineProps<{ name: TCategories }>();
       </div>
     </div>
 
-    <section class="max-w-[1576px] xl:mx-auto sm:mx-4 mx-2">
+    <section class="max-w-[1576px] xl:mx-auto">
       <div
         class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full justify-items-center sm:gap-2 gap-4 my-4"
       >
         <ProdCard
-          href="/Products/rolls/1"
-          image="prod"
-          :type="['new']"
-          :specs="['plant', 'lactose', 'hot']"
-          title="Gunkan Salmon"
-          :weight="40"
-          description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Eius nihil vero
-        facere assumenda aliquid. Quos porro non totam labore necessitatibus."
-          :price="190"
-          currency="MDL"
-          v-for="(item, index) in 4"
+          v-for="(item, index) in store.GET_DISH_FILTER(
+            productType,
+            name,
+            selectedProducts
+          )"
           :key="index"
+          :href="`/Products/rolls/${item._id}`"
+          :image="item.name"
+          :type="item.type"
+          :specs="item.specs"
+          :title="item.name"
+          :weight="item.weight"
+          :description="item.ingredients"
+          :price="item.price"
+          currency="MDL"
         />
+        <div
+          class="col-span-4 sm:py-16 py-8 items-center flex flex-col sm:gap-8 gap-6 bg-white rounded-lg font-medium sm:text-lg text-base w-full text-center"
+          v-if="
+            store.GET_DISH_FILTER(productType, name, selectedProducts)
+              ?.length === 0
+          "
+        >
+          <div class="sm:w-48 w-36 sm:h-32 h-24">
+            <img
+              src="../assets/images/historyLess.svg"
+              alt="history"
+              class="w-full h-full object-cover"
+            />
+          </div>
+          No items match the filters
+        </div>
       </div>
-      <div class="mx-auto w-max">
+      <div
+        class="mx-auto w-max"
+        v-if="
+          store.GET_DISH_FILTER(productType, name, selectedProducts)?.length !==
+          0
+        "
+      >
         <Button
           color="white"
           size="lg"

@@ -1,7 +1,9 @@
 <script setup lang="ts">
 import Icon from "./Icon.vue";
 import { computed, ref } from "vue";
+import useUserStore from "@/store/userStore";
 interface IProps {
+  id: string;
   name: string;
   weight: number;
   price: number;
@@ -9,6 +11,8 @@ interface IProps {
   currency: string;
   image: string;
 }
+const store = useUserStore();
+
 const { image, amount } = defineProps<IProps>();
 const amountVal = ref(amount);
 
@@ -23,6 +27,7 @@ const imgURL = computed(() => {
   >
     <div
       class="absolute cursor-pointer p-1 bg-gray-200 hover:bg-gray-300 rounded-xl sm:-left-[14px] -left-1 sm:top-auto -top-1"
+      @click="store.removeFromCart(id)"
     >
       <Icon icon-name="cross" />
     </div>
@@ -53,14 +58,20 @@ const imgURL = computed(() => {
       <div class="flex gap-2 items-center">
         <div
           class="rounded-lg sm:p-2 p-1 bg-white hover:bg-gray-200 cursor-pointer w-8 h-8 flex items-center justify-center"
-          @click="amountVal > 1 && amountVal--"
+          @click="
+            amountVal !== 1 && amountVal--;
+            store.decrementCartItem({ id, quantity: amount });
+          "
         >
           <Icon icon-name="minusSmall" class="fill-black" />
         </div>
         <div class="select-none">{{ amountVal }}</div>
         <div
           class="rounded-lg sm:p-2 p-1 bg-white hover:bg-gray-200 cursor-pointer w-8 h-8 flex items-center justify-center"
-          @click="amountVal < 20 && amountVal++"
+          @click="
+            amountVal <= 19 && amountVal++;
+            store.incrementCartItem({ id, quantity: amount });
+          "
         >
           <Icon icon-name="plusSmall" class="fill-black" />
         </div>

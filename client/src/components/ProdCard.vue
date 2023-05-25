@@ -10,9 +10,9 @@ interface IProps {
   title: string;
   weight: number;
   image: string;
-  type?: ("hit" | "new")[];
-  specs?: ("hot" | "plant" | "lactose")[];
-  description: string;
+  type: ("Hit" | "New")[];
+  specs?: ("hot" | "vegetarian" | "lactose")[];
+  description: Array<String>;
   price: number;
   currency: string;
 }
@@ -21,12 +21,22 @@ const props = defineProps<IProps>();
 const imgURL = computed(() => {
   return new URL(`../assets/images/${props.image}.png`, import.meta.url).href;
 });
+
+const descriptionSplit = computed(() => {
+  const arr = [];
+  for (let i = 0; i < props.description.length; i++) {
+    arr.push(props.description[i]);
+    arr.push(", ");
+  }
+  arr.pop();
+  return arr.join("");
+});
 </script>
 
 <template>
   <router-link
     :to="href"
-    class="sm:p-4 px-2 py-4 flex md:flex-col justify-between w-max bg-white cursor-pointer outline outline-2 outline-none hover:outline-orange-500 transition-all rounded-md overflow-hidden md:max-w-[300px] max-w-full md:h-max h-[220px] sm:gap-3 gap-2 relative shadow-sm"
+    class="sm:p-4 px-2 py-4 flex md:flex-col justify-between md:w-max bg-white cursor-pointer outline outline-2 outline-none hover:outline-orange-500 transition-all rounded-md overflow-hidden md:max-w-[300px] max-w-full w-full md:h-max max-h-[415px] md:min-h-[415px] min-h-[220px] md:min-w-[300px] sm:gap-3 gap-2 relative shadow-sm"
   >
     <Specs :types="specs" classes="outside" v-if="specs" />
 
@@ -36,16 +46,18 @@ const imgURL = computed(() => {
       <img :src="imgURL" class="w-full h-full object-cover" alt="" />
       <div class="absolute top-0 left-0 flex gap-2">
         <Type
-          :type="item"
           v-for="(item, index) in type"
           :key="index"
+          :type="item"
           v-if="type"
         />
       </div>
       <Specs :types="specs" classes="inside" v-if="specs" />
     </div>
     <div class="flex flex-col w-full max-w-3/4 gap-1">
-      <h2 class="font-bold sm:text-2xl text-xl whitespace-nowrap">
+      <h2
+        class="font-bold sm:text-2xl text-xl whitespace-nowrap overflow-hidden text-ellipsis"
+      >
         {{ title }}
       </h2>
       <h4 class="text-orange-500 sm:text-lg text-base">
@@ -54,7 +66,7 @@ const imgURL = computed(() => {
       <h4
         class="text-[#686870] md:max-h-[86px] sm:text-base text-sm clamp mb-auto"
       >
-        {{ description }}
+        {{ descriptionSplit }}
       </h4>
       <div class="flex justify-between items-end">
         <h2 class="font-bold xl:text-4xl sm:text-3xl text-xl whitespace-nowrap">
@@ -83,7 +95,7 @@ const imgURL = computed(() => {
 <style scoped>
 .clamp {
   display: -webkit-box;
-  -webkit-line-clamp: 3;
+  -webkit-line-clamp: 1;
   -webkit-box-orient: vertical;
   overflow: hidden;
 }

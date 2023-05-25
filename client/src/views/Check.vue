@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ref } from "vue";
+import { Ref, ref, onMounted, computed } from "vue";
 import Icon from "@/components/ui/Icon.vue";
 import CheckoutContainer from "@/components/ui/Checkout/CheckoutContainer.vue";
 import CheckLine from "@/components/ui/Check/CheckLine.vue";
@@ -8,12 +8,61 @@ import CheckProgressbar from "@/components/ui/Check/CheckProgressbar.vue";
 import CheckItemSmall from "@/components/ui/Check/CheckItemSmall.vue";
 import CheckItemBig from "@/components/ui/Check/CheckItemBig.vue";
 import CheckItemDisplay from "@/components/ui/Check/CheckItemDisplay.vue";
+import { IOrder } from "@/store/storeInterfaces";
 
 import { checkInfo, checkProgressStages } from "@/constants";
 
-defineProps<{ id: string }>();
-
+import useOrderStore from "@/store/orderStore";
+import useDishStore from "@/store/dishStore";
+const orderStore = useOrderStore();
+const dishStore = useDishStore();
 const extendedOrder = ref(false);
+const orderData: Ref<IOrder> = ref({
+  adress: "",
+  details: [],
+  dishes: [],
+  payment: "",
+  username: "",
+  createdAt: "",
+});
+
+const getDish = computed(() => {
+  return (id: string) => {
+    return dishStore.GET_DISH_DATA(id);
+  };
+});
+
+const getQuantity = computed(() => {
+  let out = 0;
+  orderData.value.dishes.map((dish: any) => (out += dish.quantity));
+  return out;
+});
+
+const getTotalSum = computed(() => {
+  let out = 0;
+  orderData.value.dishes.map((dish: any) => {
+    out += dishStore.GET_DISH_DATA(dish.id)?.price * dish.quantity;
+  });
+  return out;
+});
+
+const orderInfo = computed(() => [
+  orderData.value.adress,
+  new Date(orderData.value.createdAt).toLocaleDateString("default", {
+    day: "numeric",
+    month: "short",
+    hour: "numeric",
+    minute: "numeric",
+  }),
+  "Cash",
+  getTotalSum.value,
+]);
+
+const props = defineProps<{ id: string }>();
+
+onMounted(async () => {
+  orderData.value = await orderStore.getOrderData(props.id);
+});
 </script>
 
 <template>
@@ -35,7 +84,7 @@ const extendedOrder = ref(false);
             Thank You! <br />
             Your order
             <span class="p-2 bg-orange-400 text-white text-lg rounded-lg mx-1"
-              >#{{ id }}</span
+              >#{{ id.slice(-6) }}</span
             >
             has been successfully completed
           </h1>
@@ -44,14 +93,14 @@ const extendedOrder = ref(false);
           class="max-h-[240px] md:hidden flex flex-col gap-2 px-4 scrollbar-thin scrollbar-thumb-gray-300 scrollbar-track-gray-200 scrollbar-thumb-rounded-xl"
         >
           <CheckItemBig
-            v-for="item in 4"
-            :key="item"
-            title="Gunkan Salmon"
-            :weight="40"
-            :price="90"
+            v-for="(item, index) in orderData.dishes"
+            :key="index"
+            :title="getDish(item.id)?.name"
+            :weight="getDish(item.id)?.weight"
+            :price="getDish(item.id)?.price"
             currency="MDL"
-            image="prod"
-            :amount="1"
+            :image="getDish(item.id)?.name"
+            :amount="item.quantity"
           />
         </section>
         <section
@@ -62,17 +111,8 @@ const extendedOrder = ref(false);
             v-for="(item, index) in checkInfo"
             :key="index"
             :title="item"
-            info="sample text"
+            :info="orderInfo[index]"
           />
-          <h2 class="text-gray-400 text-sm">Details:</h2>
-          <div class="flex gap-2 flex-wrap">
-            <!--? <div>User's comment</div> -->
-            <CheckDetail
-              :text="'Leave at the door' + (item < 5 ? ',' : '')"
-              v-for="item in 5"
-              :key="item"
-            />
-          </div>
         </section>
       </div>
     </div>
@@ -91,22 +131,26 @@ const extendedOrder = ref(false);
           <p class="text-gray-400 text-sm select-none">
             {{ new Date().toLocaleDateString() }}
           </p>
-          <p class="text-xl font-bold select-none">#{{ id }}</p>
+          <p class="text-xl font-bold select-none">#{{ id.slice(-6) }}</p>
         </div>
         <div
           class="flex gap-4 w-full pb-3 place-self-center scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-300 scrollbar-thumb-rounded-xl"
         >
-          <CheckItemSmall image="prod" v-for="item in 2" />
+          <CheckItemSmall
+            v-for="(item, index) in orderData.dishes"
+            :key="index"
+            :image="getDish(item.id)?.name"
+          />
         </div>
         <div class="flex gap-4 text-xl">
           <div>
             <p class="text-gray-400">Quantity</p>
-            <p class="font-bold">7</p>
+            <p class="font-bold">{{ getQuantity }}</p>
           </div>
           <div>
             <p class="text-gray-400">Total</p>
             <p class="font-bold whitespace-nowrap">
-              337 <span class="text-gray-500 text-sm">MDL</span>
+              {{ getTotalSum }} <span class="text-gray-500 text-sm">MDL</span>
             </p>
           </div>
         </div>
@@ -114,12 +158,13 @@ const extendedOrder = ref(false);
       <CheckProgressbar :timeInMinutes="5" :stages="checkProgressStages" />
       <section v-if="extendedOrder" class="mt-20 flex flex-col gap-4">
         <CheckItemDisplay
-          title="Gunkan Salmon"
-          image="prod"
-          :weight="40"
-          :price="190"
+          v-for="(item, index) in orderData.dishes"
+          :title="getDish(item.id)?.name"
+          :image="getDish(item.id)?.name"
+          :weight="getDish(item.id)?.weight"
+          :price="getDish(item.id)?.price"
           currency="MDL"
-          :amount="1"
+          :amount="item.quantity"
         />
       </section>
     </CheckoutContainer>

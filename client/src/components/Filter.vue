@@ -8,7 +8,7 @@ import useModal from "../composables/modalBehaviour";
 import {
   Ingredients,
   productType,
-  categories,
+  prodCategories,
   activeChip,
   selectChip,
   selectedIngredients,
@@ -58,7 +58,7 @@ const clearIngredients = () => {
 
       <div class="flex gap-2 flex-wrap p-1">
         <CategoryChips
-          v-for="(item, index) in categories"
+          v-for="(item, index) in prodCategories"
           :key="index"
           :text="item"
           :active="index == activeChip.id"

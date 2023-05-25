@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { Ref, ref, computed } from "vue";
+import { Ref, ref, computed, onMounted } from "vue";
 import CheckoutDelivery from "../components/ui/Checkout/CheckoutDelivery.vue";
 import CheckoutPickup from "../components/ui/Checkout/CheckoutPickup.vue";
 
@@ -15,22 +15,42 @@ import CheckoutCheckbox from "../components/ui/Checkout/CheckoutCheckbox.vue";
 
 import Categories from "../components/Categories.vue";
 import Icon from "../components/ui/Icon.vue";
-
+import useUserStore from "@/store/userStore";
+import useDishStore from "@/store/dishStore";
+import useOrderStore from "@/store/orderStore";
 import { payment, TPayment, promoCodes } from "../constants";
+
+const dishStore = useDishStore();
+const userStore = useUserStore();
+const orderStore = useOrderStore();
+
+onMounted(() => {
+  orderStore.getUsersOrders(userStore.$state.username);
+});
+
+const cartItems = computed(() => dishStore.cartDishes);
+const getQuantity = computed(() => {
+  return (dish: any) => {
+    return userStore.$state.cartItems.find((item) => dish._id == item.id)
+      ?.quantity;
+  };
+});
 
 const activePayment = ref(0);
 
 const changeAmount = ref(0);
-const name = ref("");
-const phone = ref("");
+const name = ref(userStore.$state.username);
+const phone = ref(userStore.$state.phone);
 
 const promoCode = ref("");
 const isPromoCodeValid: Ref<null | boolean> = ref(null);
 
-const isUserLogined = ref(false);
-
-const paymentMethod: TPayment = ref(payment[activePayment.value]);
-
+const paymentMethod: TPayment = computed(() => payment[activePayment.value]);
+const totalSum = computed(() => {
+  let sum = 0;
+  cartItems.value.map((item) => (sum += item.price * getQuantity.value(item)));
+  return sum;
+});
 const checkoutChoice: Ref<"CheckoutDelivery" | "CheckoutPickup"> =
   ref("CheckoutDelivery");
 
@@ -43,6 +63,14 @@ const getCheckoutComponent = computed(() => {
 const checkPromoCode = () => {
   isPromoCodeValid.value = promoCodes.includes(promoCode.value);
 };
+
+const checkOutValues = ref({
+  adress: userStore.$state.addresses[0],
+  username: userStore.username,
+  payment: paymentMethod.value,
+  details: [],
+  dishes: userStore.cartItems,
+});
 </script>
 
 <template>
@@ -67,17 +95,7 @@ const checkPromoCode = () => {
       </div>
     </div>
     <h1 class="font-bold text-5xl my-8">Checkout</h1>
-    <div v-if="!isUserLogined">
-      <h4 class="text-gray-500 text-sm">
-        Tired of filling out fields? <br />
-        Sign in or register to autocomplete
-      </h4>
-      <button
-        class="bg-white hover:bg-gray-200 text-green-400 text-lg py-2 px-4 rounded-xl lg:max-w-[475px] md:max-w-[360px] w-full mt-4"
-      >
-        Login with phone number
-      </button>
-    </div>
+
     <section
       class="flex md:flex-row flex-col md:gap-4 gap-0 justify-between md:mb-8 mb-4"
     >
@@ -118,7 +136,7 @@ const checkPromoCode = () => {
             />
           </div>
         </CheckoutContainer>
-        <component :is="getCheckoutComponent" />
+        <component :is="getCheckoutComponent" v-model="checkOutValues.adress" />
         <CheckoutContainer>
           <h2 class="font-bold text-3xl">
             {{
@@ -201,15 +219,28 @@ const checkPromoCode = () => {
           class="max-h-[350px] max-w-[calc(100vw-60px)] bg-gray-100 rounded-lg overflow-hidden px-4 md:py-0 py-4 gap-4 flex md:flex-col flex-row justify-between scrollbar-thin scrollbar-track-gray-100 scrollbar-thumb-gray-300 scrollbar-thumb-rounded-xl mx-auto mt-4"
         >
           <CheckoutItem
-            v-for="item in 5"
-            :key="item"
-            name="Gunkan Salmon"
+            v-for="(item, index) in cartItems"
+            :key="index"
+            :name="item.name"
             currency="MDL"
-            :weight="190"
-            :price="190"
-            :amount="1"
-            image="prod"
+            :id="item._id"
+            :weight="item.weight"
+            :price="item.price"
+            :amount="getQuantity(item)"
+            :image="item.name"
+            v-if="cartItems.length > 0"
           />
+          <div
+            class="w-full bg-white rounded-lg text-center py-8 text-lg font-medium text-gray-500 flex flex-col items-center gap-8"
+            v-else
+          >
+            Your cart is empty!
+            <router-link
+              class="bg-green-500 hover:bg-green-600 transition-all w-max text-white text-2xl rounded-lg md:px-32 xs:px-16 px-8 py-2 font-medium"
+              to="/Products/rolls"
+              >Catalog</router-link
+            >
+          </div>
         </div>
         <div
           class="md:hidden flex flex-wrap gap-x-4 max-w-full mx-auto mt-4 justify-center"
@@ -225,13 +256,14 @@ const checkPromoCode = () => {
             class="grid xl:grid-cols-4 lg:grid-cols-2 place-items-center gap-2 mt-4"
           >
             <CheckoutRecommend
-              v-for="item in 4"
-              :key="item"
-              name="Coca Cola"
-              :weight="0.25"
-              :price="190"
+              v-for="(item, index) in dishStore.GET_FOUR_DRINKS"
+              :key="index"
+              :id="item._id"
+              :name="item.name"
+              :weight="item.weight"
+              :price="item.price"
               currency="MDL"
-              image="Cola"
+              :image="item.name"
             />
           </div>
         </div>
@@ -274,12 +306,16 @@ const checkPromoCode = () => {
           <div>
             <h5 class="text-gray-500 font-light text-sm">Total:</h5>
             <h3 class="font-bold text-2xl">
-              Sum <span class="text-gray-500 text-sm">MDL</span>
+              {{ totalSum }} <span class="text-gray-500 text-sm">MDL</span>
             </h3>
           </div>
           <router-link
-            to="/Check/1D24AD"
+            :to="`/Check/${orderStore.GET_LAST_ORDER?._id}`"
             class="lg:px-8 xs:px-6 px-4 xs:py-3 py-2 bg-green-500 hover:bg-green-600 rounded-lg text-white lg:text-2xl xs:text-xl text-lg whitespace-nowrap"
+            @click="
+              orderStore.createOrder(checkOutValues);
+              userStore.clearCart();
+            "
           >
             Make order
           </router-link>

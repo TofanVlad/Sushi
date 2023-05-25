@@ -1,7 +1,7 @@
 import { Ref, ref, reactive, computed } from "vue";
 import { TIcons, TCategories } from "./components/ui/icons/types";
 
-interface TProductType {
+export interface TProductType {
   active: boolean;
   iconName: TIcons;
   text: string;
@@ -9,8 +9,11 @@ interface TProductType {
 
 const Ingredients = reactive([
   { name: "Salmon", active: false },
+  { name: "Nori", active: false },
+  { name: "Rice", active: false },
   { name: "Eel", active: false },
   { name: "Tuna", active: false },
+  { name: "Seasame", active: false },
   { name: "Chicken Breast", active: false },
   { name: "Tofu", active: false },
   { name: "Cream Cheese", active: false },
@@ -21,20 +24,13 @@ const Ingredients = reactive([
 
 const productType: TProductType[] = reactive([
   { active: false, iconName: "hot", text: "Spicy" },
-  { active: false, iconName: "plant", text: "Vegetarian" },
+  { active: false, iconName: "vegetarian", text: "Vegetarian" },
   { active: false, iconName: "lactose", text: "Lactose-free" },
 ]);
 
 const prodCategories = ref(["All", "Classic", "Maki", "Baked", "Sweet"]);
 
-const categories: TCategories[] = [
-  "rolls",
-  "sushi",
-  "sets",
-  "bowls",
-  "drinks",
-  "sauces",
-];
+const categories: TCategories[] = ["rolls", "sushi", "sets", "bowls", "drinks"];
 
 const activeChip = reactive({
   id: 0,
@@ -53,21 +49,6 @@ const selectedIngredients = computed(() => {
   return selected;
 });
 
-const adresses: Ref<{ title: string; text: string }[]> = ref([
-  {
-    title: "Киев, Николая Краснова, 16",
-    text: "Подьезд 5, этаж 3, квартира 104",
-  },
-  {
-    title: "Киев, Большая Китаевская, 16",
-    text: "Подьезд 5, этаж 3, квартира 104",
-  },
-  {
-    title: "Львов, Октябрьская, 6",
-    text: "Подьезд 5, этаж 3, квартира 104",
-  },
-]);
-
 const payment = [
   "Cash",
   "By terminal",
@@ -77,7 +58,7 @@ const payment = [
 
 const cities = ["London", "Amsterdam", "Chisinau", "Berlin"] as const;
 
-const activeCity: Ref<typeof cities[number]> = ref("London");
+const activeCity: Ref<(typeof cities)[number]> = ref("London");
 
 const restaurants = {
   London: ["35 Broadway", "52 Albert Road", "95 Windsor Road", "77 Kingsway"],
@@ -97,13 +78,7 @@ const restaurants = {
 
 const promoCodes = ["GRISA123", "GHE192SR", "JWKM12WZ", "ORFSQLPO"];
 
-const checkInfo = [
-  "Adress",
-  "Time",
-  "Payment method",
-  "Total sum",
-  "Change from",
-];
+const checkInfo = ["Adress", "Time", "Payment method", "Total sum"];
 
 const checkProgressStages = [
   "Order Confirmation",
@@ -113,7 +88,7 @@ const checkProgressStages = [
   "Courier arrived",
 ];
 
-export type TPayment = Ref<typeof payment[number]>;
+export type TPayment = Ref<(typeof payment)[number]>;
 
 const profileMenuLines = {
   box: "Order History",
@@ -142,10 +117,10 @@ const profileSectionInfo: Ref<
   Record<"box" | "map" | "heart" | "sun", TProfileSectionInfo>
 > = ref({
   box: {
-    title: "Order Addresses",
+    title: "Order History",
     icon: "addressLess" as TIcons,
-    text: "You have no saved addresses",
-    desc: "Go to the category you are interested in and make your first order and the address will be saved automatically",
+    text: " You have no orders",
+    desc: "Go to the category you are interested in and place your first order",
     buttonText: "Add address",
   },
   heart: {
@@ -155,10 +130,10 @@ const profileSectionInfo: Ref<
     desc: "Go to the category you are interested in and mark your favorite",
   },
   map: {
-    title: "Orders History",
+    title: "Orders Addresses",
     icon: "historyLess" as TIcons,
-    text: "You have no orders",
-    desc: "Go to the category you are interested in and place your first order",
+    text: "You have no saved addresses",
+    desc: "Go to the category you are interested in and make your first order and the address will be saved automatically",
   },
   sun: {
     title: "",
@@ -176,7 +151,6 @@ export {
   productType,
   Ingredients,
   selectChip,
-  adresses,
   payment,
   cities,
   restaurants,

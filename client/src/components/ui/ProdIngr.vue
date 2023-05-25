@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import { computed } from "vue";
-const { image } = defineProps<{ text: string; image: string }>();
+const props = defineProps<{ text: string; image: string }>();
 
 const imgURL = computed(() => {
-  return new URL(`../../assets/images/Products/${image}.png`, import.meta.url)
-    .href;
+  return new URL(
+    `../../assets/images/Products/${props.image}.png`,
+    import.meta.url
+  ).href;
 });
 </script>
 

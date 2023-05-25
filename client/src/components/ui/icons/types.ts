@@ -67,6 +67,7 @@ import Sun from "./Sun.vue";
 import Box from "./Box.vue";
 
 import Pencil from "./Pencil.vue";
+import Trash from "./Trash.vue";
 
 export const icons = {
   logo: Logo,
@@ -95,7 +96,7 @@ export const icons = {
   minus: Minus,
   minusSmall: MinusSmall,
   hot: Hot,
-  plant: Plant,
+  vegetarian: Plant,
   lactose: Lactose,
   appStore: AppStore,
   googlePlay: GooglePlay,
@@ -122,6 +123,7 @@ export const icons = {
   sun: Sun,
   box: Box,
   pencil: Pencil,
+  trash: Trash,
 };
 export type TIcons = keyof typeof icons;
 

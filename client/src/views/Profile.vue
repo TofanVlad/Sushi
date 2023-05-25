@@ -8,6 +8,8 @@ import {
   selectedProfileMenuLine,
   categories,
 } from "@/constants";
+import useUserStore from "@/store/userStore";
+const store = useUserStore();
 defineProps<{ id: string }>();
 </script>
 
@@ -57,7 +59,7 @@ defineProps<{ id: string }>();
           >
             <div class="flex justify-between items-center">
               <p class="whitespace-nowrap overflow-hidden text-ellipsis">
-                Ashot
+                {{ store.$state.username }}
               </p>
               <div
                 class="p-1 bg-gray-100 hover:bg-gray-200 rounded-md cursor-pointer"
@@ -68,10 +70,10 @@ defineProps<{ id: string }>();
             <p
               class="text-sm text-gray-400 whitespace-nowrap overflow-hidden text-ellipsis"
             >
-              Ashotgaming@gmail.com
+              {{ store.$state.email }}
             </p>
             <p class="whitespace-nowrap overflow-hidden text-ellipsis">
-              +37369110000
+              {{ store.$state.phone }}
             </p>
           </div>
         </div>

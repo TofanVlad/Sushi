@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import Icon from "../Icon.vue";
-defineProps<{ active: boolean; title: string; text: string; id: string }>();
+defineProps<{ active: boolean; title: string; id: string }>();
 </script>
 
 <template>
@@ -16,11 +16,6 @@ defineProps<{ active: boolean; title: string; text: string; id: string }>();
       <h3 class="text-sm whitespace-nowrap text-ellipsis overflow-hidden">
         {{ title }}
       </h3>
-      <h4
-        class="text-gray-400 text-xs whitespace-nowrap text-ellipsis overflow-hidden"
-      >
-        {{ text }}
-      </h4>
     </div>
     <input
       type="radio"

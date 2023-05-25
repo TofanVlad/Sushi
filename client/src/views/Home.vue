@@ -1,10 +1,18 @@
 <script setup lang="ts">
+import { onBeforeMount, computed } from "vue";
 import Categories from "../components/Categories.vue";
 import Button from "../components/ui/Button.vue";
 import ProdCard from "../components/ProdCard.vue";
 import Carousel from "../components/Carousel.vue";
 import Map from "../components/Map.vue";
 import Application from "../components/Application.vue";
+import useDishStore from "@/store/dishStore";
+
+const store = useDishStore();
+
+onBeforeMount(async () => {
+  await store.getDishes();
+});
 </script>
 
 <template>
@@ -36,13 +44,12 @@ import Application from "../components/Application.vue";
     </div>
     <Carousel />
   </section>
-
   <section
     class="max-w-[1576px] 2xl:mx-auto sm:mx-4 mx-2 md:mt-24 mt-16"
-    v-for="item in ['Sushi', 'Rolls', 'Sets', 'Snacks', 'Drinks']"
+    v-for="cat in ['Rolls', 'Sushi', 'Sets', 'Bowls', 'Drinks']"
   >
     <div class="flex md:justify-between justify-center mb-4">
-      <h2 class="font-bold md:text-5xl sm:text-4xl text-3xl">{{ item }}</h2>
+      <h2 class="font-bold md:text-5xl sm:text-4xl text-3xl">{{ cat }}</h2>
       <Button
         color="white"
         size="lg"
@@ -55,16 +62,16 @@ import Application from "../components/Application.vue";
       class="grid xl:grid-cols-4 lg:grid-cols-3 md:grid-cols-2 grid-cols-1 w-full justify-items-center sm:gap-2 gap-4"
     >
       <ProdCard
-        v-for="(item, index) in 4"
+        v-for="(item, index) in store.GET_HOME(cat)"
         :key="index"
-        :specs="['hot', 'plant']"
-        :type="['new', 'hit']"
-        href="/"
-        title="Gunkan Salmon"
-        :weight="40"
-        image="prod"
-        description="Lorem ipsum dolor sit amet consectetur adipisicing elit. Facilis cum blanditiis vel nesciunt labore maiores, in iusto iste fuga temporibus?"
-        :price="190"
+        :specs="item.specs"
+        :type="item.type"
+        :href="`/Products/${item.category}/${item._id}`"
+        :title="item.name"
+        :weight="item.weight"
+        :image="item.name"
+        :description="item.ingredients"
+        :price="item.price"
         currency="MDL"
       />
       <Button

@@ -1,6 +1,7 @@
 <script setup lang="ts">
 import { ref, watchEffect } from "vue";
 import Icon from "./ui/Icon.vue";
+import { categories } from "@/constants";
 import useModal from "@/composables/modalBehaviour";
 const { openedModal, closeModal } = useModal();
 
@@ -29,19 +30,74 @@ watchEffect(() => {
           <Icon icon-name="cross" />
         </div>
       </div>
-      <div class="grid grid-cols-6 gap-4">
+      <div class="grid grid-cols-2 gap-4">
         <div
-          class="col-span-6 bg-gray-100 rounded-lg p-4 flex gap-2 cursor-pointer"
+          class="col-span-2 bg-gray-100 rounded-lg p-4 flex gap-2 cursor-pointer"
         >
           <span class="fi fi-gb rounded-sm"></span>
           Language: <span class="font-semibold">English</span>
         </div>
-        <div class="col-span-2 bg-gray-100 rounded-lg p-4">321</div>
-        <div class="col-span-2 bg-gray-100 rounded-lg p-4">321</div>
-        <div class="col-span-2 bg-gray-100 rounded-lg p-4">321</div>
-        <div class="col-span-2 bg-gray-100 rounded-lg p-4">321</div>
-        <div class="col-span-2 bg-gray-100 rounded-lg p-4">321</div>
-        <div class="col-span-2 bg-gray-100 rounded-lg p-4">321</div>
+        <router-link
+          class="bg-gray-100 rounded-lg p-4 capitalize w-full flex flex-col items-center gap-1 cursor-pointer hover:bg-gray-200 transition-all"
+          v-for="(item, index) in categories"
+          :key="index"
+          :to="`/Products/${item}`"
+          @click="closeModal"
+        >
+          <Icon :icon-name="item" />
+          {{ item }}
+        </router-link>
+        <div
+          class="col-span-2 bg-gray-100 hover:bg-gray-200 transition-all rounded-lg p-4 flex gap-2 cursor-pointer text-gray-700 font-medium justify-center"
+          @click="closeModal"
+        >
+          <Icon icon-name="cart" class="fill-gray-500" />
+          <p>Repeat previous order</p>
+        </div>
+        <router-link
+          class="bg-gray-100 rounded-lg p-4 capitalize w-full flex justify-center gap-2 cursor-pointer hover:bg-gray-200 transition-all text-gray-700"
+          to="/"
+          @click="closeModal"
+        >
+          <Icon icon-name="heart" class="fill-gray-500" />
+          <p>Favourites</p>
+        </router-link>
+        <router-link
+          class="bg-gray-100 rounded-lg p-4 capitalize w-full flex justify-center gap-2 cursor-pointer hover:bg-gray-200 transition-all text-gray-700"
+          to="/"
+          @click="closeModal"
+        >
+          <Icon icon-name="human" class="fill-gray-500" />
+          <p>Profile</p>
+        </router-link>
+        <router-link
+          class="bg-gray-100 rounded-lg p-4 capitalize w-full flex justify-center gap-2 cursor-pointer hover:bg-gray-200 transition-all text-gray-700"
+          to="/"
+          @click="closeModal"
+        >
+          <p>Home</p>
+        </router-link>
+        <router-link
+          class="bg-gray-100 rounded-lg p-4 capitalize w-full flex justify-center gap-2 cursor-pointer hover:bg-gray-200 transition-all text-gray-700"
+          to="/"
+          @click="closeModal"
+        >
+          <p>Delivery</p>
+        </router-link>
+        <router-link
+          class="bg-gray-100 rounded-lg p-4 capitalize w-full flex justify-center gap-2 cursor-pointer hover:bg-gray-200 transition-all text-gray-700"
+          to="/"
+          @click="closeModal"
+        >
+          <p>About us</p>
+        </router-link>
+        <router-link
+          class="bg-gray-100 rounded-lg p-4 capitalize w-full flex justify-center gap-2 cursor-pointer hover:bg-gray-200 transition-all text-gray-700"
+          to="/"
+          @click="closeModal"
+        >
+          <p>News</p>
+        </router-link>
       </div>
     </div>
   </section>
